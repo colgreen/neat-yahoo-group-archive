@@ -1,0 +1,75 @@
+#* Makefile for NEAT
+# CVS: $Id$
+
+#* uncomment next line to build for swig/guile
+#- WARN: makefile turns off VISUAL/GTK unless SWIG is on
+#DSWIG=1
+
+SRCS := neatmain.cpp genetics.cpp networks.cpp experiments.cpp
+CC := g++ -g
+CFLAGS := -O3 -Wall
+
+ifeq ($(strip $(DSWIG)),)
+TARG := neat_ng
+LIBS := -ldl -lm
+else
+DEFINES += -DSWIG_GLOBAL
+TARG := neat
+LIBS := -L/usr/lib /usr/lib/libqthreads.so.0 -lguile -ldl -lreadline -ltermcap -lm
+INCLUDES := -I/usr/include/g++-2 -I/usr/lib/gtkmm/include -I/usr/lib/sigc++/include -I/usr/lib/glib/include -I/usr/include/gtk-1.2 -I/usr/include/glib-1.2
+endif
+
+ifneq ($(strip $(DEBUG)),)
+DEFINES += -DDEBUG=$(DEBUG)
+endif
+CFLAGS += $(INCLUDES) $(DEFINES)
+OBJS := $(SRCS:.cpp=.o)
+
+.cpp.o:
+	$(CC) $(CFLAGS) -c $<
+
+default: all
+all:	$(TARG) $(ENVL)
+
+neat_ng: $(OBJS)
+	$(CC) $(LDFLAGS) -o $@ $^ $(LIBS)
+
+neatmain.o: neatmain.cpp neatmain.h neat.h networks.h
+networks.o: networks.cpp networks.h visual.h 
+genetics.o: genetics.cpp networks.h genetics.h visual.h
+experiments.o: experiments.cpp experiments.h networks.h
+libenv%.so: env_%.cpp
+
+
+ifneq ($(strip $(DSWIG)),)
+neat: $(OBJS) visual.o neatswig_wrap.o
+	$(CC) $(LDFLAGS) -o $@ $^ `gtkmm-config --cflags --libs` $(LIBS)
+visual.o: visual.cpp visual.h networks.h
+neatswig_wrap.o: neatswig.i neatswig_wrap.cpp networks.h
+neatswig_wrap.cpp: neatswig.i
+	swig -guile -c++ neatswig.i
+	cp neatswig_wrap.c neatswig_wrap.cpp
+endif
+
+clean:
+	rm -f *.o core.* *.so
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

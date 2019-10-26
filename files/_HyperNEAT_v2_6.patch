@@ -1,0 +1,1210 @@
+diff -rupN HyperNEAT_v2_6.org/HyperNEAT/Hypercube_NEAT/CMakeLists.txt HyperNEAT_v2_6.new/HyperNEAT/Hypercube_NEAT/CMakeLists.txt
+--- HyperNEAT_v2_6.org/HyperNEAT/Hypercube_NEAT/CMakeLists.txt	2008-10-04 21:44:36.000000000 +0200
++++ HyperNEAT_v2_6.new/HyperNEAT/Hypercube_NEAT/CMakeLists.txt	2009-07-20 14:32:22.000000000 +0200
+@@ -22,14 +22,26 @@ ELSE(CYGWIN)
+ 			-D_USE_MATH_DEFINES
+ 			)
+ 	else(WIN32)
+-		ADD_DEFINITIONS(
+-			-DTIXML_USE_STL
+-			-D__WXGTK__
+-			-DWXUSINGDLL
+-			-DNOPCH
+-			-D_USE_MATH_DEFINES
+-			-pthread
+-			)
++		IF(APPLE)
++			ADD_DEFINITIONS(
++				-DAPPLE
++				-DTIXML_USE_STL
++				-D__WXMAC__
++				-DWXUSINGDLL
++				-DNOPCH
++				-D_USE_MATH_DEFINES
++				-pthread
++				)
++		ELSE(APPLE)
++			ADD_DEFINITIONS(
++				-DTIXML_USE_STL
++				-D__WXGTK__
++				-DWXUSINGDLL
++				-DNOPCH
++				-D_USE_MATH_DEFINES
++				-pthread
++				)
++		ENDIF(APPLE)
+ 	endif(WIN32)
+ endif(CYGWIN)
+ 
+@@ -55,7 +67,7 @@ SET(
+ 
+ SET(
+ 	BUILD_MPI
+-	ON 
++	OFF 
+ 	CACHE 
+ 	BOOL
+ 	"Build the MPI extension?"
+@@ -63,26 +75,47 @@ SET(
+ 
+ IF(USE_GUI)
+ 	REMOVE_DEFINITIONS(-DHCUBE_NOGUI)
++	
++	IF(APPLE)
++	   FIND_LIBRARY(APP_SERVICES_LIBRARY ApplicationServices )
++	   MARK_AS_ADVANCED (APP_SERVICES_LIBRARY)
++	   SET(EXTRA_LIBS ${APP_SERVICES_LIBRARY})
++	ENDIF (APPLE)
++	
+ ELSE(USE_GUI)
+ 	ADD_DEFINITIONS(-DHCUBE_NOGUI)
+ ENDIF(USE_GUI)
+ 
+-SET(CMAKE_CXX_FLAGS "${CMAKE_WX_CXX_FLAGS}")
+-SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D__WXDEBUG__ -DWXDEBUG=1")
++SET(CMAKE_CXX_FLAGS "${CMAKE_WX_CXX_FLAGS} -framework Carbon")
++SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D__WXDEBUG__ -DWXDEBUG=1 -framework Carbon")
+ 
+ INCLUDE_REGULAR_EXPRESSION( "^.*([Hh][Cc][Uu][Bb][Ee]|[Nn][Ee][Aa][Tt]|main).*$" )
+ 
+-SET(
+-	WXWIDGETS_INCLUDE
+-	"../../../../Libraries/wxWidgets-2.8.0/include"
+-	CACHE
+-	FILEPATH 
+-	"WxWidgets include directory"
+-	)
++IF(APPLE)
++#
++# Use MacPorts WxWidgets, installed through
++# 'sudo port install wxwidgets +debug'
++# 
++	SET(
++		WXWIDGETS_INCLUDE
++		"/opt/local/include/wx-2.8/"
++		CACHE
++		FILEPATH 
++		"WxWidgets include directory"
++		)
++ELSE(APPLE)
++	SET(
++		WXWIDGETS_INCLUDE
++		"../../../../Libraries/wxWidgets-2.8.0/include"
++		CACHE
++		FILEPATH 
++		"WxWidgets include directory"
++		)
++ENDIF(APPLE)
+ 
+ SET(
+ 	JGTL_INCLUDE
+-	"../../../JGTL/include"
++	"../../JGTL/include"
+ 	CACHE
+ 	FILEPATH 
+ 	"JGTL include directory"
+@@ -96,21 +129,49 @@ SET(
+ 	"MPI include directory"
+ 	)
+ 
+-SET(
+-	ZLIB_INCLUDE
+-	"../../../zlib"
+-	CACHE
+-	FILEPATH 
+-	"Zlib include directory"
+-	)
++IF(APPLE)
++#
++# Use MacPorts zlib, installed through
++# 'sudo port install zlib'
++# 
++	SET(
++		ZLIB_INCLUDE
++		"/opt/local/include"
++		CACHE
++		FILEPATH 
++		"Zlib include directory"
++		)
++ELSE(APPLE)
++	SET(
++		ZLIB_INCLUDE
++		"../../zlib"
++		CACHE
++		FILEPATH 
++		"Zlib include directory"
++		)
++ENDIF(APPLE)
+ 
+-SET(
+-	PYTHON_INCLUDE
+-	"C:/Python25/include"
+-	CACHE
+-	FILEPATH 
+-	"Python include directory"
+-	)
++IF(APPLE)
++#
++# Use MacPorts Python, installed through
++# 'sudo port install python25'
++# 
++	SET(
++		PYTHON_INCLUDE
++		"/opt/local/include/python2.5/"
++		CACHE
++		FILEPATH 
++		"Python include directory"
++		)
++ELSE(APPLE)
++	SET(
++		PYTHON_INCLUDE
++		"C:/Python25/include"
++		CACHE
++		FILEPATH 
++		"Python include directory"
++		)
++ENDIF(APPLE)
+ 
+ IF(CYGWIN)
+ 	SET(
+@@ -130,13 +191,23 @@ ELSE(CYGWIN)
+ 			"WxWidgets setup.h include directory"
+ 			)
+ 	ELSE(WIN32)
+-		SET(
+-			WXWIDGETS_BUILD_INCLUDE
+-			"../../../../Libraries/wxWidgets-2.8.0/build/linux_release/lib/wx/include/gtk2-unicode-release-2.8"
+-			CACHE
+-			FILEPATH 
+-			"WxWidgets setup.h include directory"
+-			)
++		IF(APPLE)
++			SET(
++				WXWIDGETS_BUILD_INCLUDE
++				"/opt/local/lib/wx/include/mac-unicode-release-2.8/"
++				CACHE
++				FILEPATH 
++				"WxWidgets setup.h include directory"
++				)
++		ELSE(APPLE)
++			SET(
++				WXWIDGETS_BUILD_INCLUDE
++				"../../../../Libraries/wxWidgets-2.8.0/build/linux_release/lib/wx/include/gtk2-unicode-release-2.8"
++				CACHE
++				FILEPATH 
++				"WxWidgets setup.h include directory"
++				)
++		ENDIF(APPLE)
+ 	ENDIF(WIN32)
+ ENDIF(CYGWIN)
+ 
+@@ -192,23 +263,39 @@ ELSE(CYGWIN)
+ 			)
+ 
+ 	ELSE(WIN32)
++		IF(APPLE)
++			SET(
++				WXWIDGETS_DEBUG_LIB
++				"/opt/local/lib/"
++				CACHE
++				FILEPATH 
++				"WxWidgets Debug Library Directory"
++				)
+ 
+-		SET(
+-			WXWIDGETS_DEBUG_LIB
+-			"${CMAKE_CURRENT_SOURCE_DIR}/../../../../Libraries/wxWidgets-2.8.0/build/linux_debug/lib/"
+-			CACHE
+-			FILEPATH 
+-			"WxWidgets Debug Library Directory"
+-			)
+-
+-		SET(
+-			WXWIDGETS_RELEASE_LIB
+-			"${CMAKE_CURRENT_SOURCE_DIR}/../../../../Libraries/wxWidgets-2.8.0/build/linux_release/lib/"
+-			CACHE
+-			FILEPATH 
+-			"WxWidgets Release Library Directory"
+-			)
++			SET(
++				WXWIDGETS_RELEASE_LIB
++				"/opt/local/lib/"
++				CACHE
++				FILEPATH 
++				"WxWidgets Release Library Directory"
++				)
++		ELSE(APPLE)
++			SET(
++				WXWIDGETS_DEBUG_LIB
++				"${CMAKE_CURRENT_SOURCE_DIR}/../../../../Libraries/wxWidgets-2.8.0/build/linux_debug/lib/"
++				CACHE
++				FILEPATH 
++				"WxWidgets Debug Library Directory"
++				)
+ 
++			SET(
++				WXWIDGETS_RELEASE_LIB
++				"${CMAKE_CURRENT_SOURCE_DIR}/../../../../Libraries/wxWidgets-2.8.0/build/linux_release/lib/"
++				CACHE
++				FILEPATH 
++				"WxWidgets Release Library Directory"
++				)
++		ENDIF(APPLE)
+ 	ENDIF(WIN32)
+ ENDIF(CYGWIN)
+ 
+@@ -220,13 +307,23 @@ SET(
+ 	"MPI Library Directory"
+ 	)
+ 
+-SET(
+-	PYTHON_LIB
+-	"C:/Python25/libs"
+-	CACHE
+-	FILEPATH 
+-	"Python library directory"
+-	)
++IF (APPLE)
++	SET(
++		PYTHON_LIB
++		"/opt/local/lib/python2.5/"
++		CACHE
++		FILEPATH 
++		"Python library directory"
++		)
++ELSE(APPLE)
++	SET(
++		PYTHON_LIB
++		"C:/Python25/libs"
++		CACHE
++		FILEPATH 
++		"Python library directory"
++		)
++ENDIF(APPLE)
+ 
+ LINK_DIRECTORIES(
+ 	${TINYXMLDLL_LIB}
+@@ -377,45 +474,88 @@ ELSE(CYGWIN)
+ 
+ 			)
+ 	ELSE(WIN32)
+-		TARGET_LINK_LIBRARIES(
+-			Hypercube_NEAT 
++		IF(APPLE)
++			TARGET_LINK_LIBRARIES(
++				Hypercube_NEAT 
+ 
+-			debug
+-			Hypercube_NEAT_Base_d
++				debug
++				Hypercube_NEAT_Base_d
+ 
+-			optimized
+-			Hypercube_NEAT_Base
++				optimized
++				Hypercube_NEAT_Base
+ 
+-			debug
+-			tinyxmldll_d
++				debug
++				tinyxmldll_d
+ 
+-			optimized
+-			tinyxmldll
++				optimized
++				tinyxmldll
+ 
+-			debug
+-			NEAT_d
++				debug
++				NEAT_d
+ 
+-			optimized
+-			NEAT
++				optimized
++				NEAT
+ 
+-			debug
+-			boost_thread-gcc42-mt-d
++				debug
++				boost_thread-mt-d
+ 
+-			optimized
+-			boost_thread-gcc42-mt
++				optimized
++				boost_thread-mt
+ 
+-			debug
+-			boost_filesystem-gcc42-mt-d
++				debug
++				boost_filesystem-mt-d
+ 
+-			optimized
+-			boost_filesystem-gcc42-mt
++				optimized
++				boost_filesystem-mt
+ 
+-			debug
+-			boost_system-gcc42-mt-d
++				debug
++				boost_system-mt-d
+ 
+-			optimized
+-			boost_system-gcc42-mt
+-			)
++				optimized
++				boost_system-mt
++			
++				)
++		ELSE(APPLE)
++			TARGET_LINK_LIBRARIES(
++				Hypercube_NEAT 
++
++				debug
++				Hypercube_NEAT_Base_d
++
++				optimized
++				Hypercube_NEAT_Base
++
++				debug
++				tinyxmldll_d
++
++				optimized
++				tinyxmldll
++
++				debug
++				NEAT_d
++
++				optimized
++				NEAT
++
++				debug
++				boost_thread-gcc42-mt-d
++
++				optimized
++				boost_thread-gcc42-mt
++
++				debug
++				boost_filesystem-gcc42-mt-d
++
++				optimized
++				boost_filesystem-gcc42-mt
++
++				debug
++				boost_system-gcc42-mt-d
++
++				optimized
++				boost_system-gcc42-mt
++				)
++		ENDIF(APPLE)
+ 	ENDIF(WIN32)
+ ENDIF(CYGWIN)
+ 
+@@ -466,27 +606,41 @@ IF(USE_GUI)
+ 				wxmsw28_adv
+ 				)
+ 		ELSE(WIN32)
+-			TARGET_LINK_LIBRARIES(
+-				Hypercube_NEAT 
++			IF(APPLE)
++				TARGET_LINK_LIBRARIES(
++					Hypercube_NEAT 
++	
++					debug
++					wx_macud-2.8
+ 
+-				debug
+-				wx_baseud-2.8
++					optimized
++					wx_macu-2.8
+ 
+-				optimized
+-				wx_baseu-2.8
++					${EXTRA_LIBS}
++					)
++			ELSE(APPLE)
++				TARGET_LINK_LIBRARIES(
++					Hypercube_NEAT 
+ 
+-				debug
+-				wx_gtk2ud_core-2.8
++					debug
++					wx_baseud-2.8
+ 
+-				optimized
+-				wx_gtk2u_core-2.8
++					optimized
++					wx_baseu-2.8
+ 
+-				debug
+-				wx_gtk2ud_adv-2.8
++					debug
++					wx_gtk2ud_core-2.8
+ 
+-				optimized
+-				wx_gtk2u_adv-2.8
+-				)
++					optimized
++					wx_gtk2u_core-2.8
++
++					debug
++					wx_gtk2ud_adv-2.8
++
++					optimized
++					wx_gtk2u_adv-2.8
++					)
++			ENDIF(APPLE)
+ 		ENDIF(WIN32)
+ 	ENDIF(CYGWIN)
+ ENDIF(USE_GUI)
+@@ -574,77 +728,151 @@ IF(BUILD_MPI)
+ 				mpi
+ 				)
+ 		ELSE(WIN32)
+-			TARGET_LINK_LIBRARIES(
+-				Hypercube_NEAT_MPI
++			IF(APPLE)
++				TARGET_LINK_LIBRARIES(
++					Hypercube_NEAT_MPI
+ 
+-				debug
+-				Hypercube_NEAT_Base_d
++					debug
++					Hypercube_NEAT_Base_d
+ 
+-				optimized
+-				Hypercube_NEAT_Base
++					optimized
++					Hypercube_NEAT_Base
+ 
+-				debug
+-				tinyxmldll_d
++					debug
++					tinyxmldll_d
+ 
+-				optimized
+-				tinyxmldll
++					optimized
++					tinyxmldll
+ 
+-				debug
+-				NEAT_d
++					debug
++					NEAT_d
+ 
+-				optimized
+-				NEAT
++					optimized
++					NEAT
+ 
+-				debug
+-				boost_thread-gcc42-mt-d
++					debug
++					boost_thread-mt-d
+ 
+-				optimized
+-				boost_thread-gcc42-mt
++					optimized
++					boost_thread-mt
+ 
+-				debug
+-				boost_filesystem-gcc42-mt-d
++					debug
++					boost_filesystem-mt-d
+ 
+-				optimized
+-				boost_filesystem-gcc42-mt
++					optimized
++					boost_filesystem-mt
+ 
+-				debug
+-				boost_system-gcc42-mt-d
++					debug
++					boost_system-mt-d
+ 
+-				optimized
+-				boost_system-gcc42-mt
++					optimized
++					boost_system-mt
++
++					#lammpio
+ 
+-				#lammpio
++					#lammpi++
++	
++					#lamf77mpi
+ 
+-				#lammpi++
++					mpich
+ 
+-				#lamf77mpi
++					pmpich
+ 
+-				mpich
++					pmpich++
+ 
+-				pmpich
++					#lam
+ 
+-				pmpich++
++					#util
+ 
+-				#lam
++					#dl
+ 
+-				#util
++					#mpi_cxx 
+ 
+-				#dl
++					#mpi 
+ 
+-				#mpi_cxx 
++					#orte 
+ 
+-				#mpi 
++					#opal 	
+ 
+-				#orte 
++					#dl
+ 
+-				#opal 	
++					#nsl
+ 
+-				#dl
++					#util
++					)
++			ELSE(APPLE)
++				TARGET_LINK_LIBRARIES(
++					Hypercube_NEAT_MPI
+ 
+-				#nsl
++					debug
++					Hypercube_NEAT_Base_d
+ 
+-				#util
+-				)
++					optimized
++					Hypercube_NEAT_Base
++
++					debug
++					tinyxmldll_d
++
++					optimized
++					tinyxmldll
++
++					debug
++					NEAT_d
++
++					optimized
++					NEAT
++
++					debug
++					boost_thread-gcc42-mt-d
++
++					optimized
++					boost_thread-gcc42-mt
++
++					debug
++					boost_filesystem-gcc42-mt-d
++
++					optimized
++					boost_filesystem-gcc42-mt
++
++					debug
++					boost_system-gcc42-mt-d
++
++					optimized
++					boost_system-gcc42-mt
++
++					#lammpio
++
++					#lammpi++
++
++					#lamf77mpi
++
++					mpich
++
++					pmpich
++
++					pmpich++
++
++					#lam
++
++					#util
++
++					#dl
++
++					#mpi_cxx 
++
++					#mpi 
++
++					#orte 
++
++					#opal 	
++
++					#dl
++
++					#nsl
++
++					#util
++					)
++			ENDIF(APPLE)
+ 		ENDIF(WIN32)
+ 	ENDIF(CYGWIN)
+ 
+@@ -695,27 +923,39 @@ IF(BUILD_MPI)
+ 					wxmsw28_adv
+ 					)
+ 			ELSE(WIN32)
+-				TARGET_LINK_LIBRARIES(
+-					Hypercube_NEAT_MPI
+-
+-					debug
+-					wx_baseud-2.8
+-
+-					optimized
+-					wx_baseu-2.8
+-
+-					debug
+-					wx_gtk2ud_core-2.8
+-
+-					optimized
+-					wx_gtk2u_core-2.8
+-
+-					debug
+-					wx_gtk2ud_adv-2.8
+-
+-					optimized
+-					wx_gtk2u_adv-2.8
+-					)
++				IF(APPLE)
++					TARGET_LINK_LIBRARIES(
++						Hypercube_NEAT_MPI
++
++						debug
++						wx_macud-2.8
++
++						optimized
++						wx_macu-2.8
++						)
++				ELSE(APPLE)
++					TARGET_LINK_LIBRARIES(
++						Hypercube_NEAT_MPI
++
++						debug
++						wx_baseud-2.8
++
++						optimized
++						wx_baseu-2.8
++
++						debug
++						wx_gtk2ud_core-2.8
++
++						optimized
++						wx_gtk2u_core-2.8
++
++						debug
++						wx_gtk2ud_adv-2.8
++
++						optimized
++						wx_gtk2u_adv-2.8
++						)
++				ENDIF(APPLE)
+ 			ENDIF(WIN32)
+ 		ENDIF(CYGWIN)
+ 	ENDIF(USE_GUI)
+@@ -853,65 +1093,121 @@ IF(BUILD_PYTHON)
+ 				python25
+ 				)
+ 		ELSE(WIN32)
+-			TARGET_LINK_LIBRARIES(
+-				HCUBE 
++			IF(APPLE)
++				TARGET_LINK_LIBRARIES(
++					HCUBE 
+ 
+-				debug
+-				Hypercube_NEAT_Base_d
++					debug
++					Hypercube_NEAT_Base_d
+ 
+-				optimized
+-				Hypercube_NEAT_Base
++					optimized
++					Hypercube_NEAT_Base
+ 
+-				debug
+-				tinyxmldll_d
++					debug
++					tinyxmldll_d
+ 
+-				optimized
+-				tinyxmldll
++					optimized
++					tinyxmldll
+ 
+-				debug
+-				NEAT_d
++					debug
++					NEAT_d
+ 
+-				optimized
+-				NEAT
++					optimized
++					NEAT
+ 
+-				debug
+-				boost_thread-gcc42-mt-d
++					debug
++					boost_thread-mt-d
+ 
+-				optimized
+-				boost_thread-gcc42-mt
++					optimized
++					boost_thread-mt
+ 
+-				debug
+-				boost_filesystem-gcc42-mt-d
++					debug
++					boost_filesystem-mt-d
+ 
+-				optimized
+-				boost_filesystem-gcc42-mt
++					optimized
++					boost_filesystem-mt
+ 
+-				debug
+-				boost_system-gcc42-mt-d
++					debug
++					boost_system-mt-d
+ 
+-				optimized
+-				boost_system-gcc42-mt
++					optimized
++					boost_system-mt
++				
++					debug
++					boost_python-mt-d
+ 
+-				debug
+-				wx_baseud-2.8
++					optimized
++					boost_python-mt
+ 
+-				optimized
+-				wx_baseu-2.8
++					debug
++					wx_macud-2.8
+ 
+-				debug
+-				wx_gtk2ud_core-2.8
++					optimized
++					wx_macu-2.8
++				
++					python2.5
++					)
++			ELSE(APPLE)
++				TARGET_LINK_LIBRARIES(
++					HCUBE 
+ 
+-				optimized
+-				wx_gtk2u_core-2.8
++					debug
++					Hypercube_NEAT_Base_d
+ 
+-				debug
+-				wx_gtk2ud_adv-2.8
++					optimized
++					Hypercube_NEAT_Base
+ 
+-				optimized
+-				wx_gtk2u_adv-2.8
++					debug
++					tinyxmldll_d
+ 
+-				python2.5
+-				)
++					optimized
++					tinyxmldll
++
++					debug
++					NEAT_d
++
++					optimized
++					NEAT
++
++					debug
++					boost_thread-gcc42-mt-d
++
++					optimized
++					boost_thread-gcc42-mt
++
++					debug
++					boost_filesystem-gcc42-mt-d
++
++					optimized
++					boost_filesystem-gcc42-mt
++
++					debug
++					boost_system-gcc42-mt-d
++
++					optimized
++					boost_system-gcc42-mt
++
++					debug
++					wx_baseud-2.8
++
++					optimized
++					wx_baseu-2.8
++
++					debug
++					wx_gtk2ud_core-2.8
++
++					optimized
++					wx_gtk2u_core-2.8
++
++					debug
++					wx_gtk2ud_adv-2.8
++
++					optimized
++					wx_gtk2u_adv-2.8
++
++					python2.5
++					)
++			ENDIF(APPLE)
+ 		ENDIF(WIN32)
+ 	ENDIF(CYGWIN)
+ 
+diff -rupN HyperNEAT_v2_6.org/HyperNEAT/Hypercube_NEAT/src/main.cpp HyperNEAT_v2_6.new/HyperNEAT/Hypercube_NEAT/src/main.cpp
+--- HyperNEAT_v2_6.org/HyperNEAT/Hypercube_NEAT/src/main.cpp	2008-09-08 22:11:12.000000000 +0200
++++ HyperNEAT_v2_6.new/HyperNEAT/Hypercube_NEAT/src/main.cpp	2009-07-20 14:33:55.000000000 +0200
+@@ -13,8 +13,13 @@
+ #include "Experiments/HCUBE_CheckersExperiment.h"
+ 
+ 
+-
+ #ifndef HCUBE_NOGUI
++
++#ifdef APPLE 
++#include <ApplicationServices/ApplicationServices.h>
++#endif 
++
++
+ namespace HCUBE
+ {
+     IMPLEMENT_APP_NO_MAIN(MainApp)
+@@ -210,6 +215,12 @@ int HyperNEAT_main(int argc,char **argv)
+         if (argc<=1)
+         {
+ #ifndef HCUBE_NOGUI
++
++#ifdef APPLE 
++            ProcessSerialNumber PSN;
++            GetCurrentProcess(&PSN);
++            TransformProcessType(&PSN,kProcessTransformToForegroundApplication);
++#endif 
+             cout << "Starting wxEntry...\n";
+             return wxEntry(argc, argv);
+ #else
+diff -rupN HyperNEAT_v2_6.org/HyperNEAT/NEAT/CMakeLists.txt HyperNEAT_v2_6.new/HyperNEAT/NEAT/CMakeLists.txt
+--- HyperNEAT_v2_6.org/HyperNEAT/NEAT/CMakeLists.txt	2008-10-04 21:43:18.000000000 +0200
++++ HyperNEAT_v2_6.new/HyperNEAT/NEAT/CMakeLists.txt	2009-07-20 14:31:53.000000000 +0200
+@@ -8,35 +8,63 @@ INCLUDE_REGULAR_EXPRESSION( "^.*[Nn][Ee]
+ 
+ SET(
+ TINYXMLDLL_INCLUDE
+-"../../../tinyxmldll/include"
++"../../tinyxmldll/include"
+ CACHE
+ FILEPATH 
+ "TinyXMLDLL include directory"
+ ) 
+ 
+-SET(
+-BOOST_ROOT
+-"../../../../Libraries/boost-trunk"
+-CACHE
+-FILEPATH 
+-"Boost Base Directory"
+-)
++IF(APPLE)
++#
++# Use MacPorts boost
++# Installed through 'sudo port install boost +python25 +graphml'
++#
++	SET(
++		BOOST_ROOT
++		"/opt/local/include/"
++		CACHE
++		PATH 
++		"Boost Base Directory"
++		)
++ELSE(APPLE)
++	SET(
++		BOOST_ROOT
++		"../../../Libraries/boost-trunk"
++		CACHE
++		PATH 
++		"Boost Base Directory"
++		)
++ENDIF(APPLE)
+ 
+ SET(
+ JGTL_INCLUDE
+-"../../../JGTL/include"
++"../../JGTL/include"
+ CACHE
+ FILEPATH 
+ "JGTL include directory"
+ ) 
+ 
+-SET(
+-ZLIB_INCLUDE
+-"../../../zlib"
+-CACHE
+-FILEPATH 
+-"Zlib include directory"
+-) 
++IF(APPLE)
++#
++# Use MacPorts zlib, installed through
++# 'sudo port install zlib'
++# 
++	SET(
++		ZLIB_INCLUDE
++		"/opt/local/include"
++		CACHE
++		FILEPATH 
++		"Zlib include directory"
++		)
++ELSE(APPLE)
++	SET(
++		ZLIB_INCLUDE
++		"../../zlib"
++		CACHE
++		FILEPATH 
++		"Zlib include directory"
++		)
++ENDIF(APPLE)
+ 
+ INCLUDE_DIRECTORIES(
+ include
+@@ -67,21 +95,29 @@ ELSE(CYGWIN)
+ 		)
+ 
+ 	ELSE(WIN32)
+-
+-		SET(
+-		BOOST_STAGE
+-		"${CMAKE_CURRENT_SOURCE_DIR}/../../../../Libraries/boost-trunk/stage_linux/lib"
+-		CACHE
+-		FILEPATH 
+-		"Boost Stage Directory"
+-		)
+-
++		IF(APPLE)
++			SET(
++				BOOST_STAGE
++				"/opt/local/lib/"
++				CACHE
++				FILEPATH 
++				"Boost Stage Directory"
++				)
++		ELSE(APPLE)
++			SET(
++				BOOST_STAGE
++				"${CMAKE_CURRENT_SOURCE_DIR}/../../../../Libraries/boost-trunk/stage_linux/lib"
++				CACHE
++				FILEPATH 
++				"Boost Stage Directory"
++				)
++		ENDIF(APPLE)
+ 	ENDIF(WIN32)
+ ENDIF(CYGWIN)
+ 
+ SET(
+ TINYXMLDLL_LIB
+-"${CMAKE_CURRENT_SOURCE_DIR}/../../../tinyxmldll/out/"
++"${CMAKE_CURRENT_SOURCE_DIR}/../../tinyxmldll/out/"
+ CACHE
+ FILEPATH 
+ "TinyXMLDLL Library Directory"
+diff -rupN HyperNEAT_v2_6.org/JGTL/CMakeLists.txt HyperNEAT_v2_6.new/JGTL/CMakeLists.txt
+--- HyperNEAT_v2_6.org/JGTL/CMakeLists.txt	2008-11-20 19:38:52.000000000 +0100
++++ HyperNEAT_v2_6.new/JGTL/CMakeLists.txt	2009-07-20 14:32:45.000000000 +0200
+@@ -67,6 +67,19 @@ IF(NOT MYPROJ_RAN_ONCE)
+ 
+ ENDIF(NOT MYPROJ_RAN_ONCE)
+ 
++IF(APPLE)
++#
++# Use MacPorts boost
++# Installed through 'sudo port install boost +python25 +graphml'
++#
++	SET(
++		BOOST_ROOT
++		"/opt/local/include/"
++		CACHE
++		PATH 
++		"Boost Base Directory"
++		)
++ELSE(APPLE)
+ SET(
+ 	BOOST_ROOT
+ 	"../../Libraries/boost-trunk"
+@@ -74,6 +87,7 @@ SET(
+ 	PATH 
+ 	"Boost Base Directory"
+ 	)
++ENDIF(APPLE)
+ 
+ INCLUDE_DIRECTORIES(
+ 	include
+@@ -102,15 +116,23 @@ ELSE(CYGWIN)
+ 			)
+ 
+ 	ELSE(WIN32)
+-
+-		SET(
+-			BOOST_STAGE
+-			"${CMAKE_CURRENT_SOURCE_DIR}/../../../Libraries/boost-trunk/stage_linux/lib"
+-			CACHE
+-			PATH 
+-			"Boost Stage Directory"
+-			)
+-
++		IF (APPLE)
++			SET(
++				BOOST_STAGE
++				"/opt/local/lib/"
++				CACHE
++				PATH 
++				"Boost Stage Directory"
++				)
++		ELSE(APPLE)
++			SET(
++				BOOST_STAGE
++				"${CMAKE_CURRENT_SOURCE_DIR}/../../../Libraries/boost-trunk/stage_linux/lib"
++				CACHE
++				PATH 
++				"Boost Stage Directory"
++				)
++		ENDIF(APPLE)
+ 	ENDIF(WIN32)
+ ENDIF(CYGWIN)
+ 
+@@ -182,4 +204,3 @@ ADD_EXECUTABLE(
+ 
+ SET_TARGET_PROPERTIES(RandomTests PROPERTIES DEBUG_POSTFIX _d)
+ 
+-
+diff -rupN HyperNEAT_v2_6.org/tinyxmldll/CMakeLists.txt HyperNEAT_v2_6.new/tinyxmldll/CMakeLists.txt
+--- HyperNEAT_v2_6.org/tinyxmldll/CMakeLists.txt	2008-01-14 09:30:42.000000000 +0100
++++ HyperNEAT_v2_6.new/tinyxmldll/CMakeLists.txt	2009-07-20 14:33:05.000000000 +0200
+@@ -72,26 +72,55 @@ ADD_DEFINITIONS(
+ -DTINYXMLDLL_EXPORTS
+ )
+ 
+-SET(
+-	ZLIB_INCLUDE
+-	"../zlib"
+-	CACHE
+-	FILEPATH 
+-	"zlib include Directory"
+-)
++IF(APPLE)
++#
++# Use MacPorts zlib, installed through
++# 'sudo port install zlib'
++# 
++	SET(
++		ZLIB_INCLUDE
++		"/opt/local/include"
++		CACHE
++		FILEPATH 
++		"Zlib include directory"
++		)
++ELSE(APPLE)
++	SET(
++		ZLIB_INCLUDE
++		"../zlib"
++		CACHE
++		FILEPATH 
++		"Zlib include directory"
++		)
++ENDIF(APPLE)
++
+ 
+ INCLUDE_DIRECTORIES(
+ include
+ ${ZLIB_INCLUDE}
+ )
+ 
+-SET(
+-	ZLIB_LIB
+-	"${CMAKE_CURRENT_SOURCE_DIR}/../zlib/out"
+-	CACHE
+-	FILEPATH 
+-	"zlib Library directory"
+-	)
++IF(APPLE)
++#
++# Use MacPorts zlib, installed through
++# 'sudo port install zlib'
++# 
++	SET(
++		ZLIB_LIB
++		"/opt/local/lib"
++		CACHE
++		FILEPATH 
++		"zlib Library directory"
++		)
++ELSE(APPLE)
++	SET(
++		ZLIB_LIB
++		"${CMAKE_CURRENT_SOURCE_DIR}/../zlib/out"
++		CACHE
++		FILEPATH 
++		"zlib Library directory"
++		)
++ENDIF(APPLE)
+ 
+ LINK_DIRECTORIES(
+ 	${ZLIB_LIB}
+@@ -108,15 +137,27 @@ ADD_LIBRARY(
+ 	src/tinyxmlerrordll.cpp
+ )
+ 
+-TARGET_LINK_LIBRARIES(
+-	tinyxmldll
+-
+-	debug
+-	zlib_d
+-
+-	optimized
+-	zlib
+-	)
++IF(APPLE)
++	TARGET_LINK_LIBRARIES(
++		tinyxmldll
++
++		debug
++		z_d
++
++		optimized
++		z
++		)
++ELSE(APPLE)
++	TARGET_LINK_LIBRARIES(
++		tinyxmldll
++
++		debug
++		zlib_d
++
++		optimized
++		zlib
++		)
++ENDIF(APPLE)
+ 
+ SET_TARGET_PROPERTIES(tinyxmldll PROPERTIES DEBUG_POSTFIX _d)
+ 

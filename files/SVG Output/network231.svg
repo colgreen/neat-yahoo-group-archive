@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE svg SYSTEM "svg-19991203.dtd">
+<svg xmlns:svg="http://www.w3.org/2000/svg" viewBox="0 0 300 1000" height="1000" width="300">
+<text y="10" x="10" style="font-size:12">
+Transcriber: Chromosome: 231</text>
+<defs>
+<marker orient="auto" markerHeight="3" markerWidth="4" markerUnits="strokeWidth" refY="5" refX="0" viewBox="0 0 10 10" id="triangle_black">
+<path fill-opacity="0.3" fill="black" d="M 0 0 L 10 5 L 0 10 z"/>
+</marker>
+<marker orient="auto" markerHeight="3" markerWidth="4" markerUnits="strokeWidth" refY="5" refX="0" viewBox="0 0 10 10" id="triangle_red">
+<path fill-opacity="0.3" fill="red" d="M 0 0 L 10 5 L 0 10 z"/>
+</marker>
+</defs>
+<circle stroke-width="1" stroke="black" fill="none" r="10" cy="50" cx="50"/>
+<text style="font-size:3pt" y="52" x="42">1</text>
+<path marker-end="url(#triangle_red)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="red" fill="none" d="M 190 77 L 62 54" id="output1-input1"/>
+<text fill="blue&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#output1-input1">-0.837</textPath>
+</text>
+<path marker-end="url(#triangle_red)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="red" fill="none" d="M 90 77 L 62 54" id="hidden11-input1"/>
+<text fill="black&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#hidden11-input1">0.618</textPath>
+</text>
+<path marker-end="url(#triangle_red)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="red" fill="none" d="M 90 227 L 62 54" id="hidden14-input1"/>
+<text fill="black&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#hidden14-input1">0.136</textPath>
+</text>
+<path marker-end="url(#triangle_red)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="red" fill="none" d="M 41,45 a7,7 0 1,1 7,-7" id="input1-input1"/>
+<text fill="black&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#input1-input1">1.683</textPath>
+</text>
+<path marker-end="url(#triangle_red)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="red" fill="none" d="M 40 98 L 50 62" id="input2-input1"/>
+<text fill="black&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#input2-input1">0.065</textPath>
+</text>
+<path marker-end="url(#triangle_red)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="red" fill="none" d="M 40 148 L 50 62" id="input3-input1"/>
+<text fill="blue&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#input3-input1">-3.166</textPath>
+</text>
+<circle stroke-width="1" stroke="black" fill="none" r="10" cy="100" cx="50"/>
+<text style="font-size:3pt" y="102" x="42">2</text>
+<path marker-end="url(#triangle_red)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="red" fill="none" d="M 190 77 L 62 104" id="output1-input2"/>
+<text fill="blue&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#output1-input2">-4.227</textPath>
+</text>
+<path marker-end="url(#triangle_red)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="red" fill="none" d="M 90 127 L 62 104" id="hidden12-input2"/>
+<text fill="blue&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#hidden12-input2">-0.204</textPath>
+</text>
+<path marker-end="url(#triangle_red)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="red" fill="none" d="M 90 177 L 62 104" id="hidden13-input2"/>
+<text fill="blue&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#hidden13-input2">-0.424</textPath>
+</text>
+<path marker-end="url(#triangle_red)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="red" fill="none" d="M 40 52 L 50 88" id="input1-input2"/>
+<text fill="blue&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#input1-input2">-0.559</textPath>
+</text>
+<path marker-end="url(#triangle_red)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="red" fill="none" d="M 41,95 a7,7 0 1,1 7,-7" id="input2-input2"/>
+<text fill="blue&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#input2-input2">-1.292</textPath>
+</text>
+<path marker-end="url(#triangle_red)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="red" fill="none" d="M 40 148 L 50 112" id="input3-input2"/>
+<text fill="black&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#input3-input2">0.176</textPath>
+</text>
+<path marker-end="url(#triangle_red)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="red" fill="none" d="M 140 52 L 62 104" id="hidden21-input2"/>
+<text fill="blue&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#hidden21-input2">-0.964</textPath>
+</text>
+<circle stroke-width="1" stroke="black" fill="none" r="10" cy="150" cx="50"/>
+<text style="font-size:3pt" y="152" x="42">3</text>
+<path marker-end="url(#triangle_red)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="red" fill="none" d="M 90 177 L 62 154" id="hidden13-input3"/>
+<text fill="black&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#hidden13-input3">0.335</textPath>
+</text>
+<path marker-end="url(#triangle_red)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="red" fill="none" d="M 40 52 L 50 138" id="input1-input3"/>
+<text fill="black&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#input1-input3">0.321</textPath>
+</text>
+<circle stroke-width="1" stroke="black" fill="none" r="10" cy="75" cx="100"/>
+<text style="font-size:3pt" y="77" x="92">1</text>
+<path marker-end="url(#triangle_black)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="black" fill="none" d="M 60 50 L 88 75" id="input1-hidden11"/>
+<text fill="black&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#input1-hidden11">1</textPath>
+</text>
+<circle stroke-width="1" stroke="black" fill="none" r="10" cy="125" cx="100"/>
+<text style="font-size:3pt" y="127" x="92">2</text>
+<path marker-end="url(#triangle_black)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="black" fill="none" d="M 60 100 L 88 125" id="input2-hidden12"/>
+<text fill="black&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#input2-hidden12">1</textPath>
+</text>
+<circle stroke-width="1" stroke="black" fill="none" r="10" cy="175" cx="100"/>
+<text style="font-size:3pt" y="177" x="92">3</text>
+<path marker-end="url(#triangle_red)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="red" fill="none" d="M 190 77 L 112 177" id="output1-hidden13"/>
+<text fill="blue&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#output1-hidden13">-0.259</textPath>
+</text>
+<path marker-end="url(#triangle_black)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="black" fill="none" d="M 60 100 L 88 175" id="input2-hidden13"/>
+<text fill="black&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#input2-hidden13">1.006</textPath>
+</text>
+<circle stroke-width="1" stroke="black" fill="none" r="10" cy="225" cx="100"/>
+<text style="font-size:3pt" y="227" x="92">4</text>
+<path marker-end="url(#triangle_black)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="black" fill="none" d="M 60 150 L 88 225" id="input3-hidden14"/>
+<text fill="black&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#input3-hidden14">1</textPath>
+</text>
+<circle stroke-width="1" stroke="black" fill="none" r="10" cy="275" cx="100"/>
+<text style="font-size:3pt" y="277" x="92">5</text>
+<path marker-end="url(#triangle_black)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="black" fill="none" d="M 60 150 L 88 275" id="input3-hidden15"/>
+<text fill="black&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#input3-hidden15">1</textPath>
+</text>
+<circle stroke-width="1" stroke="black" fill="none" r="10" cy="50" cx="150"/>
+<text style="font-size:3pt" y="52" x="142">1</text>
+<path marker-end="url(#triangle_black)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="black" fill="none" d="M 190 77 L 162 54" id="output1-hidden21"/>
+<text fill="black&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#output1-hidden21">1</textPath>
+</text>
+<circle stroke-width="1" stroke="black" fill="none" r="10" cy="75" cx="200"/>
+<text style="font-size:3pt" y="77" x="192">1</text>
+<path marker-end="url(#triangle_red)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="red" fill="none" d="M 191,70 a7,7 0 1,1 7,-7" id="output1-output1"/>
+<text fill="blue&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#output1-output1">-0.035</textPath>
+</text>
+<path marker-end="url(#triangle_black)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="black" fill="none" d="M 110 175 L 188 75" id="hidden13-output1"/>
+<text fill="black&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#hidden13-output1">1.481</textPath>
+</text>
+<path marker-end="url(#triangle_black)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="black" fill="none" d="M 110 275 L 188 75" id="hidden15-output1"/>
+<text fill="blue&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#hidden15-output1">-2.1</textPath>
+</text>
+<path marker-end="url(#triangle_black)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="black" fill="none" d="M 60 50 L 188 75" id="input1-output1"/>
+<text fill="blue&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#input1-output1">-1.096</textPath>
+</text>
+<path marker-end="url(#triangle_black)&#10;                           " stroke-opacity="0.3" stroke-width="0.5" stroke="black" fill="none" d="M 60 100 L 188 75" id="input2-output1"/>
+<text fill="black&#10;                       " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#input2-output1">1.437</textPath>
+</text>
+</svg>

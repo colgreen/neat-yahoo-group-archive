@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE svg SYSTEM "svg-19991203.dtd">
+<svg xmlns:svg="http://www.w3.org/2000/svg" height="500px" width="500px">
+<text y="10" x="10" style="font-size:12">Gomoku Random Player vs. Gomoku Better-Than-Random  
+Sat Dec 06 09:29:51 CST 2003</text>
+<path d="M 75 75 L 425 75" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 75 100 L 425 100" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 75 125 L 425 125" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 75 150 L 425 150" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 75 175 L 425 175" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 75 200 L 425 200" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 75 225 L 425 225" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 75 250 L 425 250" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 75 275 L 425 275" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 75 300 L 425 300" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 75 325 L 425 325" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 75 350 L 425 350" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 75 375 L 425 375" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 75 400 L 425 400" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 75 425 L 425 425" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 75 75 L 75 425" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 100 75 L 100 425" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 125 75 L 125 425" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 150 75 L 150 425" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 175 75 L 175 425" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 200 75 L 200 425" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 225 75 L 225 425" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 250 75 L 250 425" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 275 75 L 275 425" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 300 75 L 300 425" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 325 75 L 325 425" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 350 75 L 350 425" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 375 75 L 375 425" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 400 75 L 400 425" style="fill: none; stroke: black; stroke-width: 1;"/>
+<path d="M 425 75 L 425 425" style="fill: none; stroke: black; stroke-width: 1;"/>
+<text y="45" x="73" style="font-size:12">A</text>
+<text y="45" x="98" style="font-size:12">B</text>
+<text y="45" x="123" style="font-size:12">C</text>
+<text y="45" x="148" style="font-size:12">D</text>
+<text y="45" x="173" style="font-size:12">E</text>
+<text y="45" x="198" style="font-size:12">F</text>
+<text y="45" x="223" style="font-size:12">G</text>
+<text y="45" x="248" style="font-size:12">H</text>
+<text y="45" x="273" style="font-size:12">J</text>
+<text y="45" x="298" style="font-size:12">K</text>
+<text y="45" x="323" style="font-size:12">L</text>
+<text y="45" x="348" style="font-size:12">M</text>
+<text y="45" x="373" style="font-size:12">N</text>
+<text y="45" x="398" style="font-size:12">O</text>
+<text y="45" x="423" style="font-size:12">P</text>
+<text y="78" x="35" style="font-size:12">1</text>
+<text y="103" x="35" style="font-size:12">2</text>
+<text y="128" x="35" style="font-size:12">3</text>
+<text y="153" x="35" style="font-size:12">4</text>
+<text y="178" x="35" style="font-size:12">5</text>
+<text y="203" x="35" style="font-size:12">6</text>
+<text y="228" x="35" style="font-size:12">7</text>
+<text y="253" x="35" style="font-size:12">8</text>
+<text y="278" x="35" style="font-size:12">9</text>
+<text y="303" x="32" style="font-size:12">10</text>
+<text y="328" x="32" style="font-size:12">11</text>
+<text y="353" x="32" style="font-size:12">12</text>
+<text y="378" x="32" style="font-size:12">13</text>
+<text y="403" x="32" style="font-size:12">14</text>
+<text y="428" x="32" style="font-size:12">15</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="425" cx="275" r="10"/>
+<text fill="white" y="428" x="268" style="font-size:8">1</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="200" cx="150" r="10"/>
+<text fill="white" y="203" x="143" style="font-size:8">3</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="175" cx="350" r="10"/>
+<text fill="white" y="178" x="343" style="font-size:8">5</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="275" cx="275" r="10"/>
+<text fill="white" y="278" x="268" style="font-size:8">7</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="200" cx="275" r="10"/>
+<text fill="white" y="203" x="268" style="font-size:8">9</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="325" cx="125" r="10"/>
+<text fill="white" y="328" x="118" style="font-size:8">11</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="375" cx="200" r="10"/>
+<text fill="white" y="378" x="193" style="font-size:8">13</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="300" cx="225" r="10"/>
+<text fill="white" y="303" x="218" style="font-size:8">15</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="300" cx="400" r="10"/>
+<text fill="white" y="303" x="393" style="font-size:8">17</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="400" cx="375" r="10"/>
+<text fill="white" y="403" x="368" style="font-size:8">19</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="100" cx="400" r="10"/>
+<text fill="white" y="103" x="393" style="font-size:8">21</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="225" cx="150" r="10"/>
+<text fill="white" y="228" x="143" style="font-size:8">23</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="200" cx="400" r="10"/>
+<text fill="white" y="203" x="393" style="font-size:8">25</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="400" cx="300" r="10"/>
+<text fill="white" y="403" x="293" style="font-size:8">27</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="100" cx="350" r="10"/>
+<text fill="white" y="103" x="343" style="font-size:8">29</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="375" cx="300" r="10"/>
+<text fill="white" y="378" x="293" style="font-size:8">31</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="150" cx="325" r="10"/>
+<text fill="white" y="153" x="318" style="font-size:8">33</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="150" cx="225" r="10"/>
+<text fill="white" y="153" x="218" style="font-size:8">35</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="375" cx="150" r="10"/>
+<text fill="white" y="378" x="143" style="font-size:8">37</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="175" cx="250" r="10"/>
+<text fill="white" y="178" x="243" style="font-size:8">39</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="100" cx="300" r="10"/>
+<text fill="white" y="103" x="293" style="font-size:8">41</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="375" cx="375" r="10"/>
+<text fill="white" y="378" x="368" style="font-size:8">43</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="125" cx="100" r="10"/>
+<text fill="white" y="128" x="93" style="font-size:8">45</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="175" cx="425" r="10"/>
+<text fill="white" y="178" x="418" style="font-size:8">47</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="325" cx="250" r="10"/>
+<text fill="white" y="328" x="243" style="font-size:8">49</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="425" cx="75" r="10"/>
+<text fill="white" y="428" x="68" style="font-size:8">51</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="125" cx="225" r="10"/>
+<text fill="white" y="128" x="218" style="font-size:8">53</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="175" cx="300" r="10"/>
+<text fill="white" y="178" x="293" style="font-size:8">55</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="200" cx="425" r="10"/>
+<text fill="white" y="203" x="418" style="font-size:8">57</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="125" cx="200" r="10"/>
+<text fill="white" y="128" x="193" style="font-size:8">59</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="200" cx="325" r="10"/>
+<text fill="white" y="203" x="318" style="font-size:8">61</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="200" cx="75" r="10"/>
+<text fill="white" y="203" x="68" style="font-size:8">63</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="100" cx="200" r="10"/>
+<text fill="white" y="103" x="193" style="font-size:8">65</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="350" cx="425" r="10"/>
+<text fill="white" y="353" x="418" style="font-size:8">67</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="325" cx="275" r="10"/>
+<text fill="white" y="328" x="268" style="font-size:8">69</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="75" cx="150" r="10"/>
+<text fill="white" y="78" x="143" style="font-size:8">71</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="225" cx="250" r="10"/>
+<text fill="white" y="228" x="243" style="font-size:8">73</text>
+<circle style="fill: black; stroke: black; stroke-width: 1;" cy="400" cx="225" r="10"/>
+<text fill="white" y="403" x="218" style="font-size:8">75</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="175" cx="400" r="10"/>
+<text fill="black" y="178" x="393" style="font-size:8">2</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="375" cx="400" r="10"/>
+<text fill="black" y="378" x="393" style="font-size:8">4</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="325" cx="375" r="10"/>
+<text fill="black" y="328" x="368" style="font-size:8">6</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="75" cx="250" r="10"/>
+<text fill="black" y="78" x="243" style="font-size:8">8</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="400" cx="400" r="10"/>
+<text fill="black" y="403" x="393" style="font-size:8">10</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="300" cx="100" r="10"/>
+<text fill="black" y="303" x="93" style="font-size:8">12</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="275" cx="250" r="10"/>
+<text fill="black" y="278" x="243" style="font-size:8">14</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="300" cx="150" r="10"/>
+<text fill="black" y="303" x="143" style="font-size:8">16</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="375" cx="250" r="10"/>
+<text fill="black" y="378" x="243" style="font-size:8">18</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="100" cx="150" r="10"/>
+<text fill="black" y="103" x="143" style="font-size:8">20</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="225" cx="375" r="10"/>
+<text fill="black" y="228" x="368" style="font-size:8">22</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="425" cx="200" r="10"/>
+<text fill="black" y="428" x="193" style="font-size:8">24</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="75" cx="400" r="10"/>
+<text fill="black" y="78" x="393" style="font-size:8">26</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="125" cx="300" r="10"/>
+<text fill="black" y="128" x="293" style="font-size:8">28</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="425" cx="400" r="10"/>
+<text fill="black" y="428" x="393" style="font-size:8">30</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="400" cx="75" r="10"/>
+<text fill="black" y="403" x="68" style="font-size:8">32</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="300" cx="125" r="10"/>
+<text fill="black" y="303" x="118" style="font-size:8">34</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="350" cx="150" r="10"/>
+<text fill="black" y="353" x="143" style="font-size:8">36</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="100" cx="325" r="10"/>
+<text fill="black" y="103" x="318" style="font-size:8">38</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="425" cx="350" r="10"/>
+<text fill="black" y="428" x="343" style="font-size:8">40</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="125" cx="175" r="10"/>
+<text fill="black" y="128" x="168" style="font-size:8">42</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="275" cx="100" r="10"/>
+<text fill="black" y="278" x="93" style="font-size:8">44</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="325" cx="75" r="10"/>
+<text fill="black" y="328" x="68" style="font-size:8">46</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="425" cx="425" r="10"/>
+<text fill="black" y="428" x="418" style="font-size:8">48</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="100" cx="375" r="10"/>
+<text fill="black" y="103" x="368" style="font-size:8">50</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="375" cx="225" r="10"/>
+<text fill="black" y="378" x="218" style="font-size:8">52</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="400" cx="250" r="10"/>
+<text fill="black" y="403" x="243" style="font-size:8">54</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="125" cx="75" r="10"/>
+<text fill="black" y="128" x="68" style="font-size:8">56</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="200" cx="225" r="10"/>
+<text fill="black" y="203" x="218" style="font-size:8">58</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="225" cx="300" r="10"/>
+<text fill="black" y="228" x="293" style="font-size:8">60</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="100" cx="175" r="10"/>
+<text fill="black" y="103" x="168" style="font-size:8">62</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="325" cx="300" r="10"/>
+<text fill="black" y="328" x="293" style="font-size:8">64</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="75" cx="425" r="10"/>
+<text fill="black" y="78" x="418" style="font-size:8">66</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="150" cx="375" r="10"/>
+<text fill="black" y="153" x="368" style="font-size:8">68</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="425" cx="125" r="10"/>
+<text fill="black" y="428" x="118" style="font-size:8">70</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="350" cx="375" r="10"/>
+<text fill="black" y="353" x="368" style="font-size:8">72</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="125" cx="350" r="10"/>
+<text fill="black" y="128" x="343" style="font-size:8">74</text>
+<circle style="fill: white; stroke: black; stroke-width: 1;" cy="75" cx="300" r="10"/>
+<text fill="black" y="78" x="293" style="font-size:8">76</text>
+</svg>

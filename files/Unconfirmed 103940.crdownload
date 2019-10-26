@@ -1,0 +1,98 @@
+#!/usr/bin/perl -w
+
+use strict;
+use neat;
+
+my $start = "start.mux.dat";
+$start = $ARGV[0] if ( defined $ARGV[0] && -e $ARGV[0] );
+my $neat = new neat( $start );
+
+my $FINISHED = 0;
+
+$SIG{INT} = sub { $FINISHED = 1 };
+
+my $pixels = {
+	'p_1_1' => 1, 'p_1_2' => 2, 'p_1_3' => 3,
+	'p_2_1' => 2, 'p_2_2' => 2, 'p_2_3' => 3,
+	'p_3_1' => 3, 'p_3_2' => 3, 'p_3_3' => 3,
+};
+
+my $inputs = [
+	{ 'top' => 0,   'left' => 0,   'right' => 1/3, 'bottom' => 1/3, 'expected' => 1, },
+	{ 'top' => 0,   'left' => 1/3, 'right' => 2/3, 'bottom' => 1/3, 'expected' => 2, },
+	{ 'top' => 0,   'left' => 2/3, 'right' => 1,   'bottom' => 1/3, 'expected' => 3, },
+	{ 'top' => 1/3, 'left' => 0,   'right' => 1/3, 'bottom' => 2/3, 'expected' => 2, },
+	{ 'top' => 1/3, 'left' => 1/3, 'right' => 2/3, 'bottom' => 2/3, 'expected' => 2, },
+	{ 'top' => 1/3, 'left' => 2/3, 'right' => 1,   'bottom' => 2/3, 'expected' => 3, },
+	{ 'top' => 2/3, 'left' => 0,   'right' => 1/3, 'bottom' => 1,   'expected' => 3, },
+	{ 'top' => 2/3, 'left' => 1/3, 'right' => 2/3, 'bottom' => 1,   'expected' => 3, },
+	{ 'top' => 2/3, 'left' => 2/3, 'right' => 1,   'bottom' => 1,   'expected' => 3, },
+	{ 'top' => 0,   'left' => 0,   'right' => 2/3, 'bottom' => 2/3, 'expected' => (1+2+2+2)/4, },
+	{ 'top' => 0,   'left' => 1/3, 'right' => 1,   'bottom' => 2/3, 'expected' => (2+3+2+3)/4, },
+	{ 'top' => 1/3, 'left' => 0,   'right' => 2/3, 'bottom' => 1,   'expected' => (2+2+3+3)/4, },
+	{ 'top' => 1/3, 'left' => 1/3, 'right' => 1,   'bottom' => 1,   'expected' => (2+3+3+3)/4, },
+	{ 'top' => 0,   'left' => 0,   'right' => 1,   'bottom' => 1,   'expected' => (1+2+3+2+2+3+3+3+3)/9, },
+];
+
+foreach my $i ( @$inputs ) {
+	foreach my $p ( keys %$pixels ) {
+		$i->{$p} = $pixels->{$p};
+	}
+	$i->{'bias'} = 1;
+	$i->{'output'} = 0;
+}
+
+sub EvaluateMUX
+{
+	my $net = shift;
+
+	# why retest someone who hasn't changed?
+	return $net->{'fitness'}
+		if ( $net->{'elite'} );
+
+	my $total = 0;
+	my $values;
+	my $average;
+	my $i;
+	my $difference;
+	$total = 0;
+	for ( $i = 0 ; $i < 14 ; $i++ )
+	{
+		$values = Copy( $inputs->[$i] );
+		$neat->Activate( $net, $values );
+		$difference = 1 + abs( $values->{'output'} - $values->{'expected'} );
+		$total += $difference * $difference;
+	}
+#	printf( "  [1m%lf[0m\n", 1 - $average );
+	my $fitness = 100 - $total;
+	$FINISHED = 1 if ( $total < 0.1 ); # close enough!
+	$fitness = 0 if $fitness < 0;
+	return $fitness;
+}
+
+$neat->EvaluationFunction( \&EvaluateMUX );
+
+# initial generation
+$neat->EvaluateAll();
+
+my $count = 0;
+while ( ! $FINISHED )
+{
+	$neat->Epoch();
+	printf( "\t%s\n", $neat->Stats() );
+	$neat->EvaluateAll();
+#	$FINISHED = 1 if ( ++$count == 100 );
+}
+
+$neat->Champions();
+$neat->Save( "mux.final.dat" );
+
+exit;
+
+my $champion = $neat->ChampionNetwork();
+my $code = $neat->ActivationFunction_C_PartialEval( $champion, 
+		{ bias => 1 } );
+open INDENT, "|indent - -o activate.mux.c";
+print INDENT $code;
+close INDENT;
+#system "cat activate.xor.c";

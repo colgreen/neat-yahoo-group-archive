@@ -1,0 +1,1053 @@
+Index: genetics.cpp
+===================================================================
+--- genetics.cpp	(revision 2167)
++++ genetics.cpp	(working copy)
+@@ -1,5 +1,6 @@
+ #include "genetics.h"
+ #include "visual.h"
++using namespace std;
+ 
+ //This is used for list sorting of Organisms by fitness..highest fitness first
+ bool order_orgs(Organism *x, Organism *y) {
+@@ -41,6 +42,7 @@
+     }
+     cout<<endl; 
+   }
++  return os;
+ }
+ 
+ 
+@@ -408,8 +410,8 @@
+ 
+ }
+ 
+-void Genome::print_to_filename(char *filename) {
+-  ofstream oFile(filename,ios::out);
++void Genome::print_to_filename (const string& filename) {
++  ofstream oFile(filename.c_str(), ios::out);
+   print_to_file(oFile);
+   oFile.close();
+ }
+@@ -823,17 +825,17 @@
+   NNode *out_node; 
+   Link *thelink;  //The link inside the random gene
+ 
+-  double randmult;  //using a gaussian to find the random gene
+-
+   list<Innovation*>::iterator theinnov; //For finding a historical match
+   bool done=false;
+   
+   Gene *newgene1;  //The new Genes
+   Gene *newgene2;
+-  NNode *newnode;   //The new NNode
++  NNode *newnode= 0;   //The new NNode
+   Trait *traitptr; //The original link's trait
+ 
++#if SPLIT_WEIGHT_SQRT_UNUSED
+   double splitweight;  //If used, Set to sqrt(oldweight of oldlink)
++#endif
+   double oldweight;  //The weight of the original link
+ 
+   int trycount;  //Take a few tries to find an open node
+@@ -879,15 +881,17 @@
+     while ((trycount<20)&&(!found)) {
+       
+       //Choose a random genenum
+-      
++
++#if GAUSSIAN_CHOICE      
+       //Possible gaussian method
+-      //randmult=gaussrand()/4;
+-      //if (randmult>1.0) randmult=1.0;
++      double randmult= gaussrand()/4;
++      if (randmult>1.0) randmult=1.0;
+       //This tends to select older genes for splitting
+-      //genenum=(int) floor((randmult*(genes.size()-1.0))+0.5);
+-      
++      genenum= int( floor((randmult*(genes.size()-1.0))+0.5));
++#else // GAUSSIAN_CHOICE
+       //Pure random splitting
+       genenum=randint(0,genes.size()-1);
++#endif // GAUSSIAN_CHOICE
+       
+       //find the gene
+       thegene=genes.begin();
+@@ -1020,7 +1024,7 @@
+   list<Gene*>::iterator thegene; //Searches for existing link
+   bool found=false;  //Tells whether an open pair was found
+   list<Innovation*>::iterator theinnov; //For finding a historical match
+-  int recurflag; //Indicates whether proposed link is recurrent
++  int recurflag= 0; //Indicates whether proposed link is recurrent
+   Gene *newgene;  //The new Gene
+ 
+   int traitnum;  //Random trait finder
+@@ -1318,7 +1322,7 @@
+   list<Gene*>::iterator p2gene;
+   double p1innov;  //Innovation numbers for genes inside parents' Genomes
+   double p2innov;
+-  Gene *chosengene;  //Gene chosen for baby to inherit
++  Gene *chosengene= 0;  //Gene chosen for baby to inherit
+   int traitnum;  //Number of trait new gene points to
+   NNode *inode;  //NNodes connected to the chosen Gene
+   NNode *onode;
+@@ -1587,7 +1591,7 @@
+   list<Gene*>::iterator p2gene;
+   double p1innov;  //Innovation numbers for genes inside parents' Genomes
+   double p2innov;
+-  Gene *chosengene;  //Gene chosen for baby to inherit
++  Gene *chosengene= 0;  //Gene chosen for baby to inherit
+   int traitnum;  //Number of trait new gene points to
+   NNode *inode;  //NNodes connected to the chosen Gene
+   NNode *onode;
+@@ -1910,7 +1914,7 @@
+   list<Gene*>::iterator p1stop;
+   double p1innov;  //Innovation numbers for genes inside parents' Genomes
+   double p2innov;
+-  Gene *chosengene;  //Gene chosen for baby to inherit
++  Gene *chosengene= 0;  //Gene chosen for baby to inherit
+   int traitnum;  //Number of trait new gene points to
+   NNode *inode;  //NNodes connected to the chosen Gene
+   NNode *onode;
+@@ -2337,7 +2341,8 @@
+ }
+ 
+ //Display a graph of a Genome's resultant Network directly from a file
+-Genome *display_Genome(char *filename, int width, int height) {
++#if VISUAL
++Genome *display_Genome (const char *filename, int width, int height) {
+   Genome *g;
+   Network *n;
+ 
+@@ -2354,6 +2359,7 @@
+   delete n;
+ 
+ }
++#endif // VISUAL
+ 
+ int print_Genome_tofile(Genome *g,char *filename) {
+   
+@@ -2429,7 +2435,7 @@
+ 
+ Organism *Species::get_champ() {
+   double champ_fitness=-1.0;
+-  Organism *thechamp;
++  Organism *thechamp= 0;
+   list<Organism*>::iterator curorg;
+ 
+   for(curorg=organisms.begin();curorg!=organisms.end();++curorg) {
+@@ -2486,13 +2492,11 @@
+ bool Population::verify() {
+   list<Organism*>::iterator curorg;
+   
+-  bool verification;
+-
+   for(curorg=organisms.begin();curorg!=organisms.end();++curorg) {
+-    verification=((*curorg)->gnome)->verify();
++    if (! ((*curorg)->gnome)->verify())
++      return false;
+   }
+-
+-  return verification;
++  return true;
+ } 
+ 
+ //Create a population of size size off of Genome g
+@@ -2500,7 +2504,7 @@
+ //with linkweights slightly perturbed from g's
+ bool Population::spawn(Genome *g,int size) {
+   int count;
+-  Genome *new_genome;
++  Genome *new_genome= 0;
+   Organism *new_organism;
+ 
+   //Create size copies of the Genome
+@@ -2589,10 +2593,10 @@
+ }
+ 
+ //Print Population to a file specified by a string
+-bool Population::print_to_file(char *filename){
++bool Population::print_to_file (const string& filename){
+   list<Organism*>::iterator curorg;
+ 
+-  ofstream outFile(filename,ios::out);
++  ofstream outFile(filename.c_str(), ios::out);
+ 
+   //Make sure it worked
+   if (!outFile) {
+@@ -2641,11 +2645,11 @@
+ 
+ }
+ 
+-bool Population::print_to_file_by_species(char *filename) {
++bool Population::print_to_file_by_species (const string& filename) {
+ 
+   list<Species*>::iterator curspecies;
+ 
+-  ofstream outFile(filename,ios::out);
++  ofstream outFile( filename.c_str(), ios::out);
+ 
+   //Make sure it worked
+   if (!outFile) {
+@@ -2832,11 +2836,9 @@
+   int total_expected;  //precision checking
+   int total_organisms=organisms.size();
+   int max_expected;
+-  Species *best_species;
++  Species *best_species= 0;
+   int final_expected;
+ 
+-  int pause;
+-
+   //Rights to make babies can be stolen from inferior species
+   //and given to their superiors, in order to concentrate exploration on
+   //the best species
+@@ -2852,20 +2854,21 @@
+   int best_species_num;  //Used in debugging to see why (if) best species dies
+   bool best_ok;
+ 
++  //Record what generation we are on
++  final_gen=generation;
++
++  int num_species=species.size();
++
++#if FORCE_SPECIES_QUOTA
+   //We can try to keep the number of species constant at this number
+   int num_species_target=100;
+-  int num_species=species.size();
+-  double compat_mod=0.3;  //Modify compat thresh to control speciation
+ 
+-  //Record what generation we are on
+-  final_gen=generation;
+-
+-  /*
+   //Keeping species diverse
+   //This commented out code forces the system to aim for 
+   // num_species species at all times, enforcing diversity
+   //This tinkers with the compatibility threshold, which
+   // normally would be held constant
++  double compat_mod=0.3;  //Modify compat thresh to control speciation
+   if (generation>1) {
+     if (num_species<num_species_target)
+       compat_threshold-=compat_mod;
+@@ -2875,7 +2878,7 @@
+     if (compat_threshold<0.3) compat_threshold=0.3;
+ 
+   }
+-  */
++#endif // FORCE_SPECIES_QUOTA
+ 
+   cout<<"Number of Species: "<<num_species<<endl;
+   cout<<"compat_thresh: "<<compat_threshold<<endl;
+@@ -3337,19 +3340,17 @@
+   //The weight mutation power is species specific depending on its age
+   double mut_power=weight_mut_power;
+ 
+-  //Roulette wheel variables
++#if ROULETTE_WHEEL
++// Compute total fitness of species for a roulette wheel
++// Note: You don't get much advantage from a roulette here
++//  because the size of a species is relatively small.
++//  But you can use it by using the roulette code here
+   double total_fitness=0.0;
+-  double marble;  //The marble will have a number between 0 and total_fitness
+-  double spin;  //Fitness total while the wheel is spinning
++  for(curorg=organisms.begin();curorg!=organisms.end();++curorg) {
++    total_fitness+=(*curorg)->fitness;
++  }
++#endif // ROUTLETTE_WHEEL
+ 
+-  //Compute total fitness of species for a roulette wheel
+-  //Note: You don't get much advantage from a roulette here
+-  // because the size of a species is relatively small.
+-  // But you can use it by using the roulette code here
+-  //for(curorg=organisms.begin();curorg!=organisms.end();++curorg) {
+-  //  total_fitness+=(*curorg)->fitness;
+-  //}
+-
+   //Check for a mistake
+   if ((expected_offspring>0)&&
+       (organisms.size()==0)) {
+@@ -3442,20 +3443,19 @@
+       for(orgcount=0;orgcount<orgnum;orgcount++)
+ 	++curorg;                       
+ 
+-
+-      /*
+-      //Roulette Wheel
+-      marble=randfloat()*total_fitness;
++#if ROULETTE_WHEEL      //Roulette Wheel
++  double marble;  //The marble will have a number between 0 and total_fitness
++  double spin;  //Fitness total while the wheel is spinning
++      marble= randfloat()*total_fitness;
+       curorg=organisms.begin();
+-      spin=(*curorg)->fitness;
++      spin= (*curorg)->fitness;
+       while(spin<marble) {
+ 	++curorg;
+ 	
+ 	//Keep the wheel spinning
+ 	spin+=(*curorg)->fitness;
+       }
+-      //Finished roulette
+-      */
++#endif // ROULETTE_WHEEL
+ 
+       mom=(*curorg);
+ 
+@@ -3520,20 +3520,20 @@
+       curorg=organisms.begin();
+       for(orgcount=0;orgcount<orgnum;orgcount++)
+         ++curorg;
+-      
+-      /*
+-      //Roulette Wheel
+-      marble=randfloat()*total_fitness;
++
++#if ROULETTE_WHEEL       //Roulette Wheel selection
++      int num_species= species.size();
++      double compat_mod= 0.3;  //Modify compat thresh to control speciation
++      double marble= randfloat()*total_fitness;
+       curorg=organisms.begin();
+-      spin=(*curorg)->fitness;
++      double spin= (*curorg)->fitness;
+       while(spin<marble) {
+ 	++curorg;
+ 
+ 	//Keep the wheel spinning
+-	spin+=(*curorg)->fitness;
++	spin += (*curorg)->fitness;
+       }
+-      //Finished roulette
+-      */
++#endif // ROULETTE_WHEEL
+ 
+       mom=(*curorg);         
+ 
+@@ -3756,7 +3756,8 @@
+ 
+ //Visualize the Population's Speciation using a graphic depiction
+ //width and height denote the size of the window
+-void Population::visualize(int width,int height,int start_gen,int stop_gen) {
++void Population::visualize (int width, int height, unsigned int start_gen
++       , unsigned int stop_gen) {
+   list<Generation_viz*>::iterator curgen;
+   list<Species_viz*>::iterator curspec;
+   int spaces; //Number of blank spaces in the current row
+@@ -3767,7 +3768,9 @@
+   int xpos; 
+   int ypos;
+   int space=2;
++#if VISUAL
+   PopulationWindow *window;
++#endif
+   double fitness_total=0.0; //For averaging
+   double total_species=0.0;
+   double variance_total=0.0;  //Intermediate part of variance calculation  
+@@ -3848,10 +3851,11 @@
+   }
+ 
+   //Now pop up the window and draw the snapshot
++#if VISUAL
+   window = new PopulationWindow(this,width,height,start_gen,stop_gen);
+   window->show();
+-
+   myapp->run();
++#endif // VISUAL
+ 
+   }
+   else {
+Index: experiments.cpp
+===================================================================
+--- experiments.cpp	(revision 2167)
++++ experiments.cpp	(working copy)
+@@ -1,15 +1,16 @@
+ #include "experiments.h"
++using namespace std;
+ 
+ //#define NO_SCREEN_OUT 
+ 
+ //Perform evolution on XOR, for gens generations
+ Population *xor_test(int gens) {
+-    Population *pop;
++    Population *pop= 0;
+     Genome *start_genome;
+     char curword[20];
+     int id;
+ 
+-    ostrstream *fnamebuf;
++    ostringstream *fnamebuf;
+     int gen;
+  
+     int evals[NEAT::num_runs];  //Hold records for each run
+@@ -49,7 +50,7 @@
+ 	cout<<"Epoch "<<gen<<endl;	
+ 
+ 	//This is how to make a custom filename
+-	fnamebuf=new ostrstream();
++	fnamebuf=new ostringstream();
+ 	(*fnamebuf)<<"gen_"<<gen<<ends;  //needs end marker
+ 
+ 	#ifndef NO_SCREEN_OUT
+@@ -180,7 +181,8 @@
+ 
+ }
+ 
+-int xor_epoch(Population *pop,int generation,char *filename,int &winnernum,int &winnergenes,int &winnernodes) {
++int xor_epoch (Population *pop, int generation, const string& filename
++                   , int &winnernum,int &winnergenes,int &winnernodes) {
+   list<Organism*>::iterator curorg;
+   list<Species*>::iterator curspecies;
+ 
+@@ -246,14 +248,13 @@
+ 
+ //Perform evolution on single pole balacing, for gens generations
+ Population *pole1_test(int gens) {
+-    Population *pop;
++    Population *pop= 0;
+     Genome *start_genome;
+     char curword[20];
+     int id;
+ 
+-    ostrstream *fnamebuf;
++    ostringstream *fnamebuf;
+     int gen;
+-    int pause;
+ 
+     int expcount;
+     int status;
+@@ -290,7 +291,7 @@
+       for (gen=1;gen<=gens;gen++) {
+ 	cout<<"Generation "<<gen<<endl;
+ 	
+-	fnamebuf=new ostrstream();
++	fnamebuf=new ostringstream();
+ 	(*fnamebuf)<<"gen_"<<gen<<ends;  //needs end marker
+ 
+ #ifndef NO_SCREEN_OUT
+@@ -322,12 +323,12 @@
+ 
+ }
+ 
+-int pole1_epoch(Population *pop,int generation,char *filename) {
++int pole1_epoch(Population *pop,int generation, const string& filename) {
+   list<Organism*>::iterator curorg;
+   list<Species*>::iterator curspecies;
+ 
+   bool win=false;
+-  int winnernum;
++  int winnernum= -1;
+ 
+   //Evaluate each organism on a test
+   for(curorg=(pop->organisms).begin();curorg!=(pop->organisms).end();++curorg) {
+@@ -409,6 +410,12 @@
+ 
+ //     cart_and_pole() was take directly from the pole simulator written
+ //     by Richard Sutton and Charles Anderson.
++const double one_degree= 0.0174532;	/* 2pi/360 */
++const double six_degrees=0.1047192;
++const double twelve_degrees=0.2094384;
++const double thirty_six_degrees= 0.628329;
++const double fifty_degrees=0.87266;
++
+ int go_cart(Network *net,int max_steps,int thresh)
+ {
+    float x,			/* cart position, meters */
+@@ -420,16 +427,8 @@
+    int random_start=1;
+ 
+    double in[5];  //Input loading array
+-
+    double out1;
+    double out2;
+-
+-   double one_degree= 0.0174532;	/* 2pi/360 */
+-   double six_degrees=0.1047192;
+-   double twelve_degrees=0.2094384;
+-   double thirty_six_degrees= 0.628329;
+-   double fifty_degrees=0.87266;
+-
+    list<NNode*>::iterator out_iter;
+ 
+    if (random_start) {
+@@ -492,7 +491,7 @@
+  four state variables and updates their values by estimating the state
+  TAU seconds later.
+ ----------------------------------------------------------------------*/
+-int cart_pole(int action, float *x,float *x_dot, float *theta, float *theta_dot) {
++void cart_pole(int action, float *x,float *x_dot, float *theta, float *theta_dot) {
+   float xacc,thetaacc,force,costheta,sintheta,temp;
+   
+   const float GRAVITY=9.8;
+@@ -534,12 +533,11 @@
+ //If velocity is false, then velocity information will be withheld from the 
+ //network population (non-Markov)
+ Population *pole2_test(int gens,int velocity) {
+-    Population *pop;
+     Genome *start_genome;
+     char curword[20];
+     int id;
+ 
+-    ostrstream *fnamebuf;
++    ostringstream *fnamebuf;
+     int gen;
+     int pause;
+     CartPole *thecart;
+@@ -591,8 +589,9 @@
+     iFile.close();
+ 
+     cout<<"Start Genome: "<<start_genome<<endl;
++    cin>>pause; 
+ 
+-    cin>>pause;  
++    Population *pop= 0;
+ 
+     for (run=0;run<NEAT::num_runs;run++) {
+       
+@@ -600,7 +599,7 @@
+ 
+       //Spawn the Population from starter gene
+       cout<<"Spawning Population off Genome"<<endl;
+-      pop=new Population(start_genome,NEAT::pop_size);
++      pop= new Population(start_genome,NEAT::pop_size);
+       
+       //Alternative way to start off of randomly connected genomes
+       //pop=new Population(pop_size,7,1,10,false,0.3);
+@@ -614,7 +613,7 @@
+       for (gen=1;gen<=gens;gen++) {
+ 	cout<<"Epoch "<<gen<<endl;
+ 	
+-	fnamebuf=new ostrstream();
++	fnamebuf=new ostringstream();
+ 	(*fnamebuf)<<"gen_"<<gen<<ends;  //needs end marker
+ #ifndef NO_SCREEN_OUT
+ 	cout<<"name of fname: "<<fnamebuf->str()<<endl;
+@@ -771,9 +770,9 @@
+ 	  y->compute_max_fitness());
+ }
+ 
+-int pole2_epoch(Population *pop,int generation,char *filename,bool velocity,
+-		CartPole *thecart,int &champgenes,int &champnodes,
+-		int &winnernum, ofstream &oFile) {
++int pole2_epoch (Population *pop, int generation, const string& filename
++      , bool velocity, CartPole *thecart, int &champgenes, int &champnodes
++      , int &winnernum, ofstream &oFile) {
+   list<Organism*>::iterator curorg;
+   list<Species*>::iterator curspecies;
+ 
+@@ -783,7 +782,7 @@
+   bool win=false;
+ 
+   double champ_fitness;
+-  Organism *champ;
++  Organism *champ= 0;
+ 
+   //double statevals[5]={-0.9,-0.5,0.0,0.5,0.9};
+   double statevals[5]={0.05, 0.25, 0.5, 0.75, 0.95};
+@@ -962,7 +961,7 @@
+   //Create the next generation
+   pop->epoch(generation);
+ 
+-  return champ_fitness;
++  return int( champ_fitness);
+ 
+ }
+ 
+@@ -1076,7 +1075,7 @@
+ 
+   double nmarkov_fitness;
+ 
+-  double jiggletotal; //total jiggle in last 100
++  double jiggletotal= 0; //total jiggle in last 100
+   int count;  //step counter
+ 
+   //init(randomize);		// restart at some point
+@@ -1161,8 +1160,6 @@
+  
+    //Sum last 100
+    if ((steps>100)&&(!nmarkov_long)) {
+-     int pause;
+-
+      jiggletotal=0;
+      //cout<<"step "<<steps-99-2<<" to step "<<steps-2<<endl;
+      //Adjust for array bounds and count
+Index: genetics.h
+===================================================================
+--- genetics.h	(revision 2167)
++++ genetics.h	(working copy)
+@@ -1,12 +1,12 @@
+ #ifndef GENETICS_H
+ #define GENETICS_H
+ 
+-#include <assert.h>
+-#include <iostream.h>
+-#include <fstream.h>
+-#include <string.h>
+-#include <stdlib.h>
+-#include <math.h>
++#include <cassert>
++#include <iostream>
++#include <fstream>
++#include <string>
++#include <cstdlib>
++#include <cmath>
+ 
+ #include <list>
+ #include <vector>
+@@ -15,6 +15,12 @@
+ #include "networks.h"
+ #include "visual.h"
+ #include "neat.h"
++using std::string;
++using std::list;
++using std::vector;
++using std::cerr;
++using std::cout;
++using std::endl;
+ 
+ /* These are NNode types */
+ typedef int nodetype;
+@@ -107,7 +113,7 @@
+   }
+ 
+   //Construct a gene from a file spec given traits and nodes
+-  Gene(ifstream &iFile,vector<Trait*> &traits,list<NNode*> &nodes) {
++  Gene (std::ifstream &iFile, vector<Trait*> &traits, list<NNode*> &nodes) {
+     //Gene parameter holders
+     int traitnum;
+     int inodenum;
+@@ -162,7 +168,7 @@
+     delete lnk;
+   }
+ 
+-  void print_to_file(ofstream &outFile); //Print gene to a file- called from Genome
++  void print_to_file (std::ofstream &outFile); //Print gene to a file- called from Genome
+ 
+   friend ostream& operator<< (ostream& os, const Gene *thegene);
+ 
+@@ -235,7 +241,7 @@
+ 
+   //Special constructor which spawns off an input file
+   //This constructor assumes that some routine has already read in GENOMESTART
+-  Genome(int id,ifstream &iFile) {
++  Genome(int id, std::ifstream &iFile) {
+     char curword[20];  //max word size of 20 characters
+ 
+     int done=0;
+@@ -490,9 +496,9 @@
+ 
+   Network *genesis(int);  //Generate a network phenotype from this Genome with specified id
+ 
+-  void print_to_file(ofstream &outFile); //Dump this genome to specified file
++  void print_to_file (std::ofstream &outFile); //Dump this genome to specified file
+ 
+-  void print_to_filename(char *filename); //Dump genome to file
++  void print_to_filename (const string& filename); //Dump genome to file
+ 
+   Genome *duplicate(int new_id);  /* Duplicate this Genome to create a new one
+ 				     with the specified id */
+@@ -777,7 +783,7 @@
+ 
+   Organism *first();
+ 
+-  bool print_to_file(ofstream &outFile);
++  bool print_to_file (std::ofstream &outFile);
+ 
+   //Change the fitness of all the organisms in the species 
+   //to possibly depend slightly on the age of the species
+@@ -938,11 +944,11 @@
+   bool speciate(); //Separate the Organisms into species
+ 
+   //Print Population to a file specified by a string 
+-  bool print_to_file(char *filename);
++  bool print_to_file (const string& filename);
+ 
+   //Print Population to a file in speciated order with comments
+   //separating each species
+-  bool print_to_file_by_species(char *filename);
++  bool print_to_file_by_species (const string& filename);
+ 
+   //Run verify on all Genomes in this Population (Debugging)
+   bool verify();
+@@ -956,7 +962,7 @@
+ 
+   //Visualize the Population's Speciation using a graphic depiction
+   //width and height denote the size of the window
+-  void visualize(int width,int height,int start_gen,int stop_gen);
++  void visualize (int width, int height, unsigned int start_gen, unsigned int stop_gen);
+ 
+   /* Construct off of a single spawning Genome */
+   Population(Genome *g,int size) {
+@@ -997,7 +1003,7 @@
+ 
+     char curword[20];  //max word size of 20 characters
+ 
+-    ifstream iFile(filename,ios::in);
++    std::ifstream iFile (filename, std::ios::in);
+ 
+     Genome *new_genome;
+ 
+Index: experiments.h
+===================================================================
+--- experiments.h	(revision 2167)
++++ experiments.h	(working copy)
+@@ -1,10 +1,11 @@
+ #ifndef EXPERIMENTS_H
+ #define EXPERIMENTS_H
+ 
++#include <string>
+ #include <iostream>
+ #include <iomanip>
+ #include <fstream>
+-#include <strstream>
++#include <sstream>
+ #include <list>
+ #include <vector>
+ #include <algorithm>
+@@ -12,27 +13,31 @@
+ #include "neat.h"
+ #include "networks.h"
+ #include "genetics.h"
++using std::string;
+ 
+ 
+ //The XOR evolution routines *****************************************
+ Population *xor_test(int gens);
+ bool xor_evaluate(Organism *org);
+-int xor_epoch(Population *pop,int generation,char *filename, int &winnernum, int &winnergenes,int &winnernodes);
++int xor_epoch (Population *pop, int generation, const string& filename
++         , int &winnernum, int &winnergenes,int &winnernodes);
+ 
+ //Single pole balancing evolution routines ***************************
+ Population *pole1_test(int gens); 
+ bool pole1_evaluate(Organism *org);
+-int pole1_epoch(Population *pop,int generation,char *filename);
++int pole1_epoch(Population *pop,int generation, const string& filename);
+ int go_cart(Network *net,int max_steps,int thresh); //Run input
+ //Move the cart and pole
+-int cart_pole(int action, float *x,float *x_dot, float *theta, float *theta_dot);
++void cart_pole(int action, float *x,float *x_dot, float *theta, float *theta_dot);
+ 
+ //Double pole balacing evolution routines ***************************
+ class CartPole;
+ 
+ Population *pole2_test(int gens,int velocity);
+ bool pole2_evaluate(Organism *org,bool velocity,CartPole *thecart);
+-int pole2_epoch(Population *pop,int generation,char *filename,bool velocity, CartPole *thecart,int &champgenes,int &champnodes, int &winnernum, ofstream &oFile);
++int  pole2_epoch (Population *pop, int generation, const string& filename
++       , bool velocity, CartPole *thecart, int &champgenes, int &champnodes
++       , int &winnernum, std::ofstream &oFile);
+ 
+ 
+ class CartPole {
+Index: visual.h
+===================================================================
+--- visual.h	(revision 2167)
++++ visual.h	(working copy)
+@@ -1,5 +1,6 @@
+ #ifndef VISUAL_H
+ #define VISUAL_H
++#if VISUAL
+ 
+ #include <list>
+ #include <vector>
+@@ -105,7 +106,7 @@
+   PopulationWindow (Population *p,int w,int h,int start_gen,int stop_gen);  //make a window of width and height pixels
+ 
+ }; 
++#endif // VISUAL
++#endif // VISUAL_H
+ 
+-#endif
+ 
+-
+Index: networks.cpp
+===================================================================
+--- networks.cpp	(revision 2167)
++++ networks.cpp	(working copy)
+@@ -1,9 +1,10 @@
+ #include <iostream>
+ #include <list>
+ //#include <algorithm>
+-#include <math.h>
++#include <cmath>
+ #include "networks.h"
+ #include "visual.h"
++using namespace std;
+ 
+ //Global NEAT class
+ class NEAT;
+@@ -314,6 +315,7 @@
+ //Network pointer display
+ ostream& operator<<(ostream &os,Network *thenet) {
+   thenet->show_activation();
++  return os;
+ }
+  
+ //Puts the network back into an initial state
+@@ -517,7 +519,6 @@
+ 
+ //Takes an array of sensor values and loads it into SENSOR inputs ONLY
+ void Network::load_sensors(double *sensvals) {
+-  int counter=0;  //counter to move through array
+   list<NNode*>::iterator sensPtr;
+ 
+   for(sensPtr=inputs.begin();sensPtr!=inputs.end();++sensPtr) {
+@@ -732,8 +733,6 @@
+   int noise;  //Noise is added to x values so they won't perfectly align
+   list<NNode*> *startpath; //For detecting loops
+ 
+-  ScribbleWindow *window;
+-
+   // Before setting up graphics, we need to compute the coordinates
+   // of the nodes
+   for(curnode=outputs.begin();curnode!=outputs.end();++curnode) {
+@@ -757,7 +756,7 @@
+       rowsum+=*currow;
+     }
+     //Now average it
+-    (*curnode)->row=floor(rowsum/(((*curnode)->rowlevels).size())+0.5);
++    (*curnode)->row= int( floor(rowsum/(((*curnode)->rowlevels).size())+0.5));
+     if ((*curnode)->row>maxrow) 
+       maxrow=(*curnode)->row;  //Keep track of lowest row
+   }
+@@ -781,7 +780,7 @@
+   //Compute the size of the drawing area
+   ypixels=height-100;
+   xpixels=width-6;
+-  ystep=floor(ypixels/maxrow);
++  ystep= int( floor(ypixels/maxrow));
+ 
+   //Assign coordinates to every node
+   for(rownum=0;rownum<=maxrow;rownum++) {
+@@ -794,10 +793,8 @@
+     }
+ 
+     //Compute the xstep for this row
+-    xstep=floor(((double) xpixels)/
+-		((double) (nodes_in_row+1)));
+-    
+-    xpos+=xstep;
++    xstep= int( floor( double(xpixels)/double(nodes_in_row+1)));
++    xpos += xstep;
+ 
+     for(curnode=drawlist.begin();curnode!=drawlist.end();++curnode) {
+       if (((*curnode)->row)==rownum) {
+@@ -820,14 +817,14 @@
+ 
+   //Now that each node has a coordinate,we can graph the network
+   //Note that the actual drawing takes place during he configuration
+-
+-  window = new ScribbleWindow(this,&drawlist,width,height);
++#if VISUAL
++  ScribbleWindow *window = new ScribbleWindow(this,&drawlist,width,height);
+   window->show();
+ 
+   myapp->run();
+ 
+   //delete window;
+-  
++#endif // VISUAL
+ }
+ 
+ 
+@@ -871,7 +868,6 @@
+   list<Link*>::iterator curlink;
+   int cur_depth; //The depth of the current node
+   int max=d; //The max depth
+-  int pause;
+ 
+   if (d>100) {
+     //cout<<mynet->genotype<<endl;
+
+Index: networks.h
+===================================================================
+--- networks.h	(revision 2167)
++++ networks.h	(working copy)
+@@ -1,26 +1,31 @@
+ #ifndef NETWORKS_H
+ #define NETWORKS_H
+ 
+-#include <assert.h>
++#include <cassert>
+ #include <iostream>
+-#include <fstream.h>
+-#include <string.h>
+-#include <stdlib.h>
+-#include <math.h>
++#include <fstream>
++#include <string>
++#include <cstdlib>
++#include <cmath>
+ 
+-
++#if VISUAL
+ #include <gtk--/main.h>
+ #include <gtk--/style.h>
+ #include <gtk--/window.h>
+ #include <gtk--/button.h>
+ #include <gtk--/box.h>
+ #include <gtk--/drawingarea.h>
++#endif // VISUAL
+ 
+ #include <list>
+ #include <vector>
+ #include <algorithm>
+ 
+ #include "neat.h"
++using std::list;
++using std::vector;
++using std::ostream;
++class ostream;   // forward kludge??
+ 
+ /* These are NNode types */
+ typedef int nodetype;
+@@ -152,7 +157,7 @@
+ 
+ 
+   //Special constructor off a file assume word "trait" has been read in
+-  Trait(ifstream &iFile) {
++  Trait (std::ifstream &iFile) {
+ 
+     //Read in trait id
+     iFile>>trait_id;
+@@ -174,7 +179,7 @@
+   ~Trait() {
+   }
+ 
+-  void print_to_file(ofstream &outFile);  //Dump trait to a file
++  void print_to_file (std::ofstream &outFile);  //Dump trait to a file
+   void mutate();  //Perturb the trait parameters slightly
+   
+   friend ostream& operator<< (ostream& os, const Trait *thetrait);
+@@ -354,7 +359,7 @@
+   }
+ 
+   //Construct the node out of a file specification using given list of traits
+-  NNode (ifstream &iFile,vector<Trait*> &traits) {
++  NNode (std::ifstream &iFile, vector<Trait*> &traits) {
+     int traitnum;
+     vector<Trait*>::iterator curtrait;
+ 
+@@ -399,7 +404,7 @@
+   void flushback();  //Recursively deactivate backwards through the network
+   void flushback_check(list<NNode*> &seenlist);  //Verify flushing for debuginh
+ 
+-  void  print_to_file(ofstream &outFile); //Print the node to a file
++  void  print_to_file (std::ofstream &outFile); //Print the node to a file
+ 
+   void derive_trait(Trait *curtrait);//Have NNode gain its properties from the trait
+ 
+Index: neat.h
+===================================================================
+--- neat.h	(revision 2167)
++++ neat.h	(working copy)
+@@ -3,6 +3,8 @@
+ 
+ #include <iostream>
+ #include <fstream>
++#define FALSE false
++#define TRUE  true
+ 
+ class NEAT { 
+ 
+@@ -66,12 +68,14 @@
+   static int num_runs; /* The number of runs to average over in an experiment */
+   
+   //Construct NEAT object off of a NE param (.ne) file
+-  static bool load_neat_params(char *filename) {
+-    ifstream paramFile(filename,ios::in);
++  static bool load_neat_params (const char *filename) {
++    std::ifstream paramFile (filename, std::ios::in);
+     char curword[30];
++    using std::cout;
++    using std::endl;
+     
+     //**********LOAD IN PARAMETERS***************//
+-    cout<<"NEAT READING IN "<<filename<<endl;
++    cout << "NEAT READING IN " << filename << endl;
+     paramFile>>curword;
+     paramFile>>trait_param_mut_prob;
+     paramFile>>curword;
+@@ -186,7 +190,7 @@
+ 
+ }; //end class NEAT
+ 
+-#endif
++#endif // NEAT_H
+ 
+ 
+ Index: neatmain_ng.cpp
+===================================================================
+--- neatmain_ng.cpp	2005-06-09 15:16:43.000000000 -0700
++++ neatmain_ng.cpp	2005-06-09 15:16:43.000000000 -0700
+@@ -2,17 +2,18 @@
+ //#include <stdio.h>
+ #include <iostream>
+ #include <iomanip>
+-#include <strstream>
++//#include <strstream>
+ #include <list>
+ #include <vector>
+ #include <algorithm>
+-#include <math.h>
++#include <cmath>
+ //#include <iostream.h>
+ //#include "networks.h"
+ #include "neat.h"
+ #include "genetics.h"
+ #include "experiments.h"
+ #include "neatmain.h"
++using namespace std;
+  
+ //Network pointer display
+ //ostream& operator<<(ostream &os,Network *thenet) {
+@@ -78,22 +79,21 @@
+ }
+ 
+ double testdoubset(double val) {
+-  *testdoub=val;
++  return *testdoub= val;
+ }
+ 
+-int main(int argc, char *argv[]) {
++int main (int argc, char *argv[]) {
+ 
+-  ostream_iterator<NNode*> output(cout," ");
++//-ostream_iterator<NNode*> output(cout," ");
+   list<NNode*> nodelist;
+-
+-  Population *p;
+-
+   double val=1.0;
+ 
+   /* GTKMM */
+-  myapp=new Gtk::Main(argc, argv);
++#if VISUAL
++  myapp= new Gtk::Main(argc, argv);
++#endif
+ 
+-  testdoub=&val;
++  testdoub= &val;
+ 
+   //***********RANDOM SETUP***************//
+   /* Seed the random-number generator with current time so that
+@@ -105,12 +105,15 @@
+ 
+   //Here is an example of how to run an experiment directly from main
+   //and then visualize the speciation that took place
+-  p=xor_test(100);  //100 generation XOR experiment
++  Population *p= xor_test(100);  //100 generation XOR experiment
++#if VISUAL
+   cout<<"Visualizing 1 to "<<p->final_gen<<endl;
+   p->visualize(500,700,1,p->final_gen);
++#else
++  (void)p;       // unused when no visual
++#endif // VISUAL
+  
+-  return(0);
+- 
++  return 0;
+ }
+ 
+ 
+

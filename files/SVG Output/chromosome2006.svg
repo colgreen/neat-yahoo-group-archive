@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE svg SYSTEM "svg-19991203.dtd">
+<svg xmlns:svg="http://www.w3.org/2000/svg" viewBox="-300 -300 700 700" width="700px" height="700px">
+<defs>
+<marker orient="auto" markerHeight="3" markerWidth="4" markerUnits="strokeWidth" refY="5" refX="0" viewBox="0 0 10 10" id="triangle_black">
+<path fill="black" d="M 0 0 L 10 5 L 0 10 z"/>
+</marker>
+</defs>
+<circle stroke-width="1" stroke-opacity="0.3" stroke="black" fill="aqua" r="10" cy="10.806046117362795" cx="16.82941969615793"/>
+<text style="font-size:3pt" y="8.806046117362795" x="10.829419696157931">0</text>
+<circle stroke-width="1" stroke-opacity="0.3" stroke="black" fill="aqua" r="10" cy="-16.645873461885696" cx="36.37189707302727"/>
+<text style="font-size:3pt" y="-18.645873461885696" x="30.37189707302727">1</text>
+<circle stroke-width="1" stroke-opacity="0.3" stroke="black" fill="aqua" r="10" cy="-59.399549796026726" cx="8.467200483592032"/>
+<text style="font-size:3pt" y="-61.399549796026726" x="2.4672004835920323">2</text>
+<circle stroke-width="1" stroke-opacity="0.3" stroke="black" fill="lime" r="10" cy="-52.29148966908895" cx="-60.54419962463426"/>
+<text style="font-size:3pt" y="-54.29148966908895" x="-66.54419962463426">22</text>
+<circle stroke-width="1" stroke-opacity="0.3" stroke="black" fill="lime" r="10" cy="28.366218546322624" cx="-95.89242746631385"/>
+<text style="font-size:3pt" y="26.366218546322624" x="-101.89242746631385">27</text>
+<circle stroke-width="1" stroke-opacity="0.3" stroke="black" fill="lime" r="10" cy="115.22043439804393" cx="-33.5298597838711"/>
+<text style="font-size:3pt" y="113.22043439804393" x="-39.5298597838711">49</text>
+<circle stroke-width="1" stroke-opacity="0.3" stroke="black" fill="lime" r="10" cy="105.54631560806264" cx="91.97812382063047"/>
+<text style="font-size:3pt" y="103.54631560806264" x="85.97812382063047">82</text>
+<circle stroke-width="1" stroke-opacity="0.3" stroke="black" fill="lime" r="10" cy="-23.280005409378166" cx="158.2973194597411"/>
+<text style="font-size:3pt" y="-25.280005409378166" x="152.2973194597411">87</text>
+<circle stroke-width="1" stroke-opacity="0.3" stroke="black" fill="lime" r="10" cy="-164.00344713924184" cx="74.18132734351619"/>
+<text style="font-size:3pt" y="-166.00344713924184" x="68.18132734351619">93</text>
+<circle stroke-width="1" stroke-opacity="0.3" stroke="black" fill="lime" r="10" cy="-167.81430581529048" cx="-108.80422217787395"/>
+<text style="font-size:3pt" y="-169.81430581529048" x="-114.80422217787395">205</text>
+<circle stroke-width="1" stroke-opacity="0.3" stroke="black" fill="lime" r="10" cy="0.9736535573711728" cx="-219.99784544115477"/>
+<text style="font-size:3pt" y="-1.0263464426288271" x="-225.99784544115477">251</text>
+<circle stroke-width="1" stroke-opacity="0.3" stroke="black" fill="fuchsia" r="10" cy="202.52495009579812" cx="-128.7775003201044"/>
+<text style="font-size:3pt" y="200.52495009579812" x="-134.7775003201044">3</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M 6.829419696157931 10.806046117362795 L -95.89242746631385 28.366218546322624" id="0to27"/>
+<text fill="blue&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#0to27">-4.703</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M 6.829419696157931 10.806046117362795 L -33.5298597838711 115.22043439804393" id="0to49"/>
+<text fill="black&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#0to49">3.576</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M 6.829419696157931 10.806046117362795 L 91.97812382063047 105.54631560806264" id="0to82"/>
+<text fill="black&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#0to82">1.392</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M 6.829419696157931 10.806046117362795 L 74.18132734351619 -164.00344713924184" id="0to93"/>
+<text fill="black&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#0to93">0.088</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M 6.829419696157931 10.806046117362795 L -128.7775003201044 202.52495009579812" id="0to3"/>
+<text fill="black&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#0to3">3.307</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M 26.37189707302727 -16.645873461885696 L -60.54419962463426 -52.29148966908895" id="1to22"/>
+<text fill="black&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#1to22">1.069</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M 26.37189707302727 -16.645873461885696 L -95.89242746631385 28.366218546322624" id="1to27"/>
+<text fill="black&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#1to27">3.482</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M 26.37189707302727 -16.645873461885696 L -33.5298597838711 115.22043439804393" id="1to49"/>
+<text fill="blue&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#1to49">-0.903</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M 26.37189707302727 -16.645873461885696 L 158.2973194597411 -23.280005409378166" id="1to87"/>
+<text fill="blue&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#1to87">-0.083</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M 26.37189707302727 -16.645873461885696 L 74.18132734351619 -164.00344713924184" id="1to93"/>
+<text fill="black&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#1to93">1.73</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M 26.37189707302727 -16.645873461885696 L -128.7775003201044 202.52495009579812" id="1to3"/>
+<text fill="blue&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#1to3">-3.987</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M -1.5327995164079677 -59.399549796026726 L -60.54419962463426 -52.29148966908895" id="2to22"/>
+<text fill="blue&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#2to22">-2.133</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M -1.5327995164079677 -59.399549796026726 L -33.5298597838711 115.22043439804393" id="2to49"/>
+<text fill="black&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#2to49">0.567</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M -1.5327995164079677 -59.399549796026726 L -128.7775003201044 202.52495009579812" id="2to3"/>
+<text fill="black&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#2to3">0.051</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M -70.54419962463426 -52.29148966908895 L -95.89242746631385 28.366218546322624" id="22to27"/>
+<text fill="blue&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#22to27">-1.195</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M -70.54419962463426 -52.29148966908895 L -33.5298597838711 115.22043439804393" id="22to49"/>
+<text fill="blue&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#22to49">-1.7</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M -70.54419962463426 -52.29148966908895 L 158.2973194597411 -23.280005409378166" id="22to87"/>
+<text fill="black&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#22to87">2.195</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M -70.54419962463426 -52.29148966908895 L 74.18132734351619 -164.00344713924184" id="22to93"/>
+<text fill="blue&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#22to93">-3.756</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M -70.54419962463426 -52.29148966908895 L -108.80422217787395 -167.81430581529048" id="22to205"/>
+<text fill="blue&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#22to205">-0.295</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M -70.54419962463426 -52.29148966908895 L -128.7775003201044 202.52495009579812" id="22to3"/>
+<text fill="black&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#22to3">0.958</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M -105.89242746631385 28.366218546322624 L -128.7775003201044 202.52495009579812" id="27to3"/>
+<text fill="black&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#27to3">5.881</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M -43.5298597838711 115.22043439804393 L -95.89242746631385 28.366218546322624" id="49to27"/>
+<text fill="blue&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#49to27">-0.885</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M -43.5298597838711 115.22043439804393 L -219.99784544115477 0.9736535573711728" id="49to251"/>
+<text fill="black&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#49to251">1.804</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M -43.5298597838711 115.22043439804393 L -128.7775003201044 202.52495009579812" id="49to3"/>
+<text fill="blue&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#49to3">-2.487</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M 81.97812382063047 105.54631560806264 L -60.54419962463426 -52.29148966908895" id="82to22"/>
+<text fill="black&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#82to22">3.866</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M 81.97812382063047 105.54631560806264 L -33.5298597838711 115.22043439804393" id="82to49"/>
+<text fill="black&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#82to49">1.016</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M 81.97812382063047 105.54631560806264 L 74.18132734351619 -164.00344713924184" id="82to93"/>
+<text fill="blue&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#82to93">-0.678</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M 81.97812382063047 105.54631560806264 L -219.99784544115477 0.9736535573711728" id="82to251"/>
+<text fill="black&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#82to251">0.42</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M 148.2973194597411 -23.280005409378166 L -95.89242746631385 28.366218546322624" id="87to27"/>
+<text fill="blue&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#87to27">-0.587</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M 148.2973194597411 -23.280005409378166 L 74.18132734351619 -164.00344713924184" id="87to93"/>
+<text fill="black&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#87to93">0.312</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M 64.18132734351619 -164.00344713924184 L -95.89242746631385 28.366218546322624" id="93to27"/>
+<text fill="blue&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#93to27">-3.245</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M 64.18132734351619 -164.00344713924184 L -33.5298597838711 115.22043439804393" id="93to49"/>
+<text fill="blue&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#93to49">-0.129</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M 64.18132734351619 -164.00344713924184 L -219.99784544115477 0.9736535573711728" id="93to251"/>
+<text fill="black&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#93to251">0.582</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M -118.80422217787395 -167.81430581529048 L 158.2973194597411 -23.280005409378166" id="205to87"/>
+<text fill="blue&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#205to87">-0.351</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M -118.80422217787395 -167.81430581529048 L 74.18132734351619 -164.00344713924184" id="205to93"/>
+<text fill="blue&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#205to93">-1.321</textPath>
+</text>
+<path marker-end="&#10;               url(#triangle_black)&#10;             " stroke-opacity="0.3" stroke-width="0.5" stroke="&#10;               black&#10;             " fill="none" d="M -229.99784544115477 0.9736535573711728 L -128.7775003201044 202.52495009579812" id="251to3"/>
+<text fill="blue&#10;                   " font-size="3" font-family="Verdana">
+<textPath dy="-0.5" startOffset="25%" xlink:href="#251to3">-0.808</textPath>
+</text>
+</svg>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE svg SYSTEM "svg-19991203.dtd">
+<svg xmlns:svg="http://www.w3.org/2000/svg" height="375px" width="575px">
+<text y="10" x="10" style="font-size:12">
+        ID = 
+        Time/Date = </text>
+<text y="25" x="10" style="font-size:10">
+        PopSize=100; 
+        NumGenerations=100; 
+        NeuronMutRate=0.01; 
+        ConnectMutRate=0.01; 
+        WeightMutRate=0.75; 
+        SurvRate=0.25</text>
+<path d="M 40 340 L 540 340" fill="none" stroke="black" stroke-width="1" id="generation"/>
+<text font-family="Verdana" font-size="15" fill="blue">
+<textPath xlink:href="#generation" startOffset="40%" dy="30">Generation</textPath>
+</text>
+<path d="M 140 345 L 140 335" fill="none" stroke="black" stroke-width="1"/>
+<path d="M 240 345 L 240 335" fill="none" stroke="black" stroke-width="1"/>
+<path d="M 340 345 L 340 335" fill="none" stroke="black" stroke-width="1"/>
+<path d="M 440 345 L 440 335" fill="none" stroke="black" stroke-width="1"/>
+<path d="M 540 345 L 540 335" fill="none" stroke="black" stroke-width="1"/>
+<text font-family="Verdana" font-size="11" fill="black" y="355" x="132">20</text>
+<text font-family="Verdana" font-size="11" fill="black" y="355" x="232">40</text>
+<text font-family="Verdana" font-size="11" fill="black" y="355" x="332">60</text>
+<text font-family="Verdana" font-size="11" fill="black" y="355" x="432">80</text>
+<text font-family="Verdana" font-size="11" fill="black" y="355" x="532">100</text>
+<path d="M 40 340 L 40 40" fill="none" stroke="black" stroke-width="1" id="fitness"/>
+<text font-family="Verdana" font-size="15" fill="blue">
+<textPath xlink:href="#fitness" startOffset="40%" dy="-25">Fitness</textPath>
+</text>
+<path d="M 40 40 L 540 40" fill="none" stroke="green" stroke-width="0.5" id="fitness1"/>
+<text font-family="Verdana" font-size="9" fill-opacity="0.3" fill="green">
+<textPath xlink:href="#fitness1" startOffset="90%" dy="8">36</textPath>
+</text>
+<path d="M 40 100 L 540 100" fill="none" stroke="green" stroke-width="0.5" id="fitness2"/>
+<text font-family="Verdana" font-size="9" fill-opacity="0.3" fill="green">
+<textPath xlink:href="#fitness2" startOffset="70%" dy="8">28.8</textPath>
+</text>
+<path d="M 40 160 L 540 160" fill="none" stroke="green" stroke-width="0.5" id="fitness3"/>
+<text font-family="Verdana" font-size="9" fill-opacity="0.3" fill="green">
+<textPath xlink:href="#fitness3" startOffset="50%" dy="8">21.599999999999998</textPath>
+</text>
+<path d="M 40 220 L 540 220" fill="none" stroke="green" stroke-width="0.5" id="fitness4"/>
+<text font-family="Verdana" font-size="9" fill-opacity="0.3" fill="green">
+<textPath xlink:href="#fitness4" startOffset="30%" dy="8">14.4</textPath>
+</text>
+<path d="M 40 280 L 540 280" fill="none" stroke="green" stroke-width="0.5" id="fitness5"/>
+<text font-family="Verdana" font-size="9" fill-opacity="0.3" fill="green">
+<textPath xlink:href="#fitness5" startOffset="10%" dy="8">7.2</textPath>
+</text>
+<text font-family="Verdana" font-size="9" fill-opacity="0.3" fill="green">
+<textPath xlink:href="#generation" startOffset="0%" dy="8">0</textPath>
+</text>
+<circle fill="black" cy="257.8333333333333" cx="45" r="1" id=""/>
+<path d="M 45 340 L 45 173.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="273.8333333333333" cx="50" r="1" id=""/>
+<path d="M 50 340 L 50 173.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="262" cx="55" r="1" id=""/>
+<path d="M 55 340 L 55 173.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="260.6666666666667" cx="60" r="1" id=""/>
+<path d="M 60 340 L 60 173.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="266.0833333333333" cx="65" r="1" id=""/>
+<path d="M 65 340 L 65 114.99999999999997" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="255.58333333333331" cx="70" r="1" id=""/>
+<path d="M 70 340 L 70 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="265.5" cx="75" r="1" id=""/>
+<path d="M 75 340 L 75 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="260.5" cx="80" r="1" id=""/>
+<path d="M 80 340 L 80 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="254.5" cx="85" r="1" id=""/>
+<path d="M 85 340 L 85 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="257.91666666666663" cx="90" r="1" id=""/>
+<path d="M 90 340 L 90 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="264.75" cx="95" r="1" id=""/>
+<path d="M 95 340 L 95 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="258.5833333333333" cx="100" r="1" id=""/>
+<path d="M 100 340 L 100 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="257.0833333333333" cx="105" r="1" id=""/>
+<path d="M 105 340 L 105 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="249.66666666666666" cx="110" r="1" id=""/>
+<path d="M 110 340 L 110 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="259.5" cx="115" r="1" id=""/>
+<path d="M 115 340 L 115 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="253.58333333333331" cx="120" r="1" id=""/>
+<path d="M 120 340 L 120 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="256.0833333333333" cx="125" r="1" id=""/>
+<path d="M 125 340 L 125 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="256.4166666666667" cx="130" r="1" id=""/>
+<path d="M 130 340 L 130 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="260.6666666666667" cx="135" r="1" id=""/>
+<path d="M 135 340 L 135 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="259.3333333333333" cx="140" r="1" id=""/>
+<path d="M 140 340 L 140 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="259.8333333333333" cx="145" r="1" id=""/>
+<path d="M 145 340 L 145 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="257" cx="150" r="1" id=""/>
+<path d="M 150 340 L 150 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="254.75" cx="155" r="1" id=""/>
+<path d="M 155 340 L 155 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="252.58333333333331" cx="160" r="1" id=""/>
+<path d="M 160 340 L 160 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="255.75" cx="165" r="1" id=""/>
+<path d="M 165 340 L 165 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="251.08333333333331" cx="170" r="1" id=""/>
+<path d="M 170 340 L 170 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="259" cx="175" r="1" id=""/>
+<path d="M 175 340 L 175 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="249.83333333333331" cx="180" r="1" id=""/>
+<path d="M 180 340 L 180 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="236.16666666666666" cx="185" r="1" id=""/>
+<path d="M 185 340 L 185 98.33333333333331" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="217.25" cx="190" r="1" id=""/>
+<path d="M 190 340 L 190 81.66666666666663" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="225.91666666666666" cx="195" r="1" id=""/>
+<path d="M 195 340 L 195 81.66666666666663" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="251.41666666666666" cx="200" r="1" id=""/>
+<path d="M 200 340 L 200 81.66666666666663" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="246.5" cx="205" r="1" id=""/>
+<path d="M 205 340 L 205 81.66666666666663" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="233.25" cx="210" r="1" id=""/>
+<path d="M 210 340 L 210 65" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="232.41666666666666" cx="215" r="1" id=""/>
+<path d="M 215 340 L 215 65" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="231.66666666666666" cx="220" r="1" id=""/>
+<path d="M 220 340 L 220 65" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="235.5" cx="225" r="1" id=""/>
+<path d="M 225 340 L 225 65" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="210.41666666666666" cx="230" r="1" id=""/>
+<path d="M 230 340 L 230 40" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="204.91666666666666" cx="235" r="1" id=""/>
+<path d="M 235 340 L 235 40" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="225.58333333333331" cx="240" r="1" id=""/>
+<path d="M 240 340 L 240 40" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="231.25" cx="245" r="1" id=""/>
+<path d="M 245 340 L 245 40" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="226.25" cx="250" r="1" id=""/>
+<path d="M 250 340 L 250 40" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="229.16666666666666" cx="255" r="1" id=""/>
+<path d="M 255 340 L 255 40" fill="none" stroke="blue" stroke-width="0.5"/>
+<circle fill="black" cy="235.91666666666666" cx="260" r="1" id=""/>
+<path d="M 260 340 L 260 40" fill="none" stroke="blue" stroke-width="0.5"/>
+</svg>

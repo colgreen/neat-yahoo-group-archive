@@ -1,0 +1,91 @@
+<neat-run-output xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\neat\neat-run-output.xsd">
+	<!-- The general philosophy here is to show pertinent data copied verbatim from the neat-run-config file.
+     This allows us to determine the domian and experimental parameters that generated the output. However this
+     data isn't strictly necessary so we allow each of the blocks to be optional
+      -->
+	<!-- Optional block -->
+	<!-- A copy of the neat-run-info xml block from the neat-run-config file -->
+	<neat-run-info>
+		<author>Mr Foo Bar</author>
+		<description>Experiment to determine relationship between connection-mutation-rate and complexification. Test run 1 of 10</description>
+	</neat-run-info>
+	<!-- Optional block -->
+	<!-- A copy of the search-parameters xml block from the neat-run-config file -->
+	<search-parameters>
+		<population-size>10</population-size>
+		<neuron-mutation-probability>0.02</neuron-mutation-probability>
+		<connect-mutation-probability>0.04</connect-mutation-probability>
+		<weight-mutation-probability>0.75</weight-mutation-probability>
+		<compatibility-threshold>9.0</compatibility-threshold>
+		<disjoint-coefficient>1.0</disjoint-coefficient>
+		<excess-coefficient>1.0</excess-coefficient>
+		<weightdelta-coefficient>7.0</weightdelta-coefficient>
+		<survival-proportion>0.1</survival-proportion>
+		<!-- For experimental purposes we allow dynamic search parameters to be specified -->
+		<dynamic-parameter id="searchparam1">1234</dynamic-parameter>
+		<dynamic-parameter id="searchparam2">1235</dynamic-parameter>
+	</search-parameters>
+	<!-- Optional Block -->
+	<!-- A copy of the domain-config xml block from the neat-run-config file -->
+	<domain-config>
+		<domain-id id="DereksTicTacToe_variation99" version="1.01" authoreddate="01/01/2004">Derek's Implemetation of a Tic-Tac-Toe environment</domain-id>
+		<domain-parameters>
+			<input-node-count>10</input-node-count>
+			<output-node-count>10</output-node-count>
+			<!-- For experimental purposes we allow dynamic domain parameters to be specified -->
+			<dynamic-parameter id="domainparam1">1234</dynamic-parameter>
+			<dynamic-parameter id="domainparam2">1235</dynamic-parameter>
+		</domain-parameters>
+	</domain-config>
+	<!-- Now we output some data that describes the NEAT engine's state and also the current population. -->
+	<run-state>
+		<!-- keep track of innovation num in case we wish to restart the run? -->
+		<max-innovation-id>12345</max-innovation-id>
+	</run-state>
+	<!-- The dialect allows for outputting all generations, just the last one or a subset of all generations -->
+	<generation id="1">
+		<generation-info>
+			<save-time>2002-05-30T09:00:00</save-time>
+			<max-fitness>234</max-fitness>
+			<min-fitness>123</min-fitness>
+			<avg-fitness>222</avg-fitness>
+			<species-count>5</species-count>
+		</generation-info>
+		<specie id="1" size="2">
+			<specie-info>
+				<age>5</age>
+				<max-fitness>234</max-fitness>
+				<min-fitness>123</min-fitness>
+				<avg-fitness>222</avg-fitness>
+			</specie-info>
+			<genome id="1" fitness="110" primary-parent-id="5" secondary-parent-id="2">
+				<nodes>
+					<node id="0" type="bias"/>
+					<node id="1" type="in"/>
+					<node id="2" type="in"/>
+					<node id="3" type="out"/>
+					<node id="4" type="hid"/>
+				</nodes>
+				<connections>
+					<connection innov-id="4" src-id="0" tgt-id="3" enabled="1" weight="-1.3731676929130425"/>
+					<connection innov-id="5" src-id="0" tgt-id="3" enabled="1" weight="+0.4"/>
+				</connections>
+			</genome>
+			<genome id="2" fitness="100" primary-parent-id="12" secondary-parent-id="13">
+				<nodes>
+					<node id="0" type="bias"/>
+					<node id="1" type="in"/>
+					<node id="2" type="in"/>
+					<node id="3" type="out"/>
+					<node id="4" type="hid"/>
+				</nodes>
+				<connections>
+					<connection innov-id="4" src-id="0" tgt-id="3" enabled="1" weight="-1.3731676929130425"/>
+					<connection innov-id="5" src-id="0" tgt-id="3" enabled="1" weight="+0.4"/>
+				</connections>
+			</genome>
+		</specie>
+	</generation>
+</neat-run-output>
+
+<!-- neodl3.grp.bf1.yahoo.com Sat Oct 26 14:54:00 UTC 2019 -->
