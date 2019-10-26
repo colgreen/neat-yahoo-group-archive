@@ -7,8 +7,9 @@ Currently this archive contains only the per-message json result returned by the
 files are not in a human readable form. To obtain a human readable form see:
 
 https://github.com/andrewferguson/YahooGroups-Archiver/
-  make_Yearly_Text_Archive.py
-  make_Yearly_Text_Archive_html.py
+
+  make_Yearly_Text_Archive.py  
+  make_Yearly_Text_Archive_html.py  
   
 I encountered multiple problems trying to run those scripts, so gave up initially. You may hav more luck with one of the forks
 of that repository, or revising/updating/rewriting the scripts yourself.
