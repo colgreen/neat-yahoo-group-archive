@@ -1,5 +1,7 @@
-# neat-yahoo-group-archive
-A snapshot of all messages in the NEAT yahoo group as at 2019-10-26 12:00 UTC
+# NEAT yahoo group archive
+A snapshot of all messages in the NEAT yahoo group as at 2019-10-26 12:00 UTC.
+
+    http://groups.yahoo.com/groups/neat 
 
 Currently this archive contains only the per-message json result returned by the yahoo API, as such these json
 files are not in a human readable form. To obtain a human readable form see:
