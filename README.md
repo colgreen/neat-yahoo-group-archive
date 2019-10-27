@@ -11,10 +11,10 @@ https://github.com/andrewferguson/YahooGroups-Archiver/
   make_Yearly_Text_Archive.py  
   make_Yearly_Text_Archive_html.py  
   
-I encountered multiple problems trying to run those scripts, so gave up initially. You may hav more luck with one of the forks
+I encountered multiple problems trying to run those scripts, so gave up initially. You may have more luck with one of the forks
 of that repository, or revising/updating/rewriting the scripts yourself.
 
-The main thing for now is that the messages are archives before yahoo delete the messages. The stated deletion date is 2019-12-18.
+The main thing for now is that the messages are archived before yahoo delete them. The stated deletion date is 2019-12-18.
 
 Colin
 
